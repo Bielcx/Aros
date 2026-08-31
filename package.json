@@ -1,0 +1,20 @@
+{
+  "name": "aros-monorepo",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Aros - checkout em USDC na rede Base para lojas pequenas",
+  "workspaces": [
+    "packages/*",
+    "examples/*"
+  ],
+  "scripts": {
+    "build": "npm run build -w aros",
+    "dev": "npm run dev -w @aros/demo",
+    "typecheck": "npm run typecheck -w aros && npm run typecheck -w @aros/demo",
+    "test": "npm run test -w aros",
+    "predev": "npm run build"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
