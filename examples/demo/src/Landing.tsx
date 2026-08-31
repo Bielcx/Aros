@@ -172,7 +172,9 @@ export function Landing() {
                 <div className="demo-price">$29,00</div>
               </div>
 
-              <AroButton config={heroConfig} />
+              <div className="aro-slot">
+                <AroButton config={heroConfig} />
+              </div>
 
               <p className="demo-note">
                 Este botão é o produto de verdade, rodando aqui. Em testnet — não gasta

@@ -667,3 +667,13 @@ footer.site .row .sep { margin-left: auto; }
   font-size: 12px;
   padding: 1px 5px;
 }
+
+/* O botao vem do SDK com estilo inline, e e assim que o lojista vai ve-lo.
+   O que da para ajustar por fora e o entorno: um separador acima e um
+   respiro, para ele ler como area de pagamento e nao como botao solto. */
+.demo-body .aro-slot {
+  border-top: 1px solid var(--rule);
+  margin-top: 4px;
+  padding-top: 18px;
+}
+.demo-body .aro-slot > div { max-width: none !important; }

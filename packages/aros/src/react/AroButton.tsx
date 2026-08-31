@@ -3,6 +3,7 @@ import { formatAmount } from '../amount.js';
 import { defineConfig } from '../config.js';
 import { prefetchBaseSdk } from '../sdk.js';
 import type { AroConfig, AroReceipt } from '../types.js';
+import { useState } from 'react';
 import { useAroPayment } from './useAroPayment.js';
 
 export interface AroButtonProps {
@@ -32,6 +33,16 @@ const box: CSSProperties = {
   maxWidth: 420,
 };
 
+/**
+ * O brilho e a sombra sao neutros de proposito.
+ *
+ * O brandColor do lojista pode ser qualquer valor CSS -- um nome, uma
+ * funcao, uma variavel -- entao nao da para calcular um tom mais escuro dele
+ * com seguranca. A solucao e separar: backgroundColor recebe a cor da marca,
+ * sempre valida, e backgroundImage poe por cima um degrade de branco e preto
+ * translucidos. Funciona com qualquer cor e, se o degrade falhar, sobra a
+ * cor chapada em vez de um botao invisivel.
+ */
 const buttonBase: CSSProperties = {
   appearance: 'none',
   border: 'none',
@@ -40,9 +51,23 @@ const buttonBase: CSSProperties = {
   cursor: 'pointer',
   fontSize: 16,
   fontWeight: 600,
-  padding: '14px 24px',
+  letterSpacing: '-0.01em',
+  lineHeight: 1.2,
+  padding: '15px 24px',
+  position: 'relative',
+  transition: 'transform .12s ease, box-shadow .18s ease, filter .18s ease',
   width: '100%',
 };
+
+const SHEEN = 'linear-gradient(180deg, rgba(255,255,255,.16), rgba(0,0,0,.12))';
+const SHEEN_HOVER = 'linear-gradient(180deg, rgba(255,255,255,.26), rgba(0,0,0,.06))';
+
+const sombra = (forte: boolean): string =>
+  [
+    'inset 0 1px 0 rgba(255,255,255,.22)',
+    'inset 0 -1px 0 rgba(0,0,0,.14)',
+    forte ? '0 10px 26px -10px rgba(0,0,0,.75)' : '0 6px 18px -10px rgba(0,0,0,.7)',
+  ].join(', ');
 
 const noteStyle: CSSProperties = {
   fontSize: 13,
@@ -74,6 +99,8 @@ export function AroButton({
   className,
   style,
 }: AroButtonProps) {
+  const [hover, setHover] = useState(false);
+  const [press, setPress] = useState(false);
   const resolved = defineConfig(config);
   const payment = useAroPayment(config, {
     ...(onConfirmed ? { onConfirmed } : {}),
@@ -130,7 +157,16 @@ export function AroButton({
             Falar com {resolved.storeName}
           </a>
         ) : null}
-        <button type="button" onClick={payment.reset} style={{ ...buttonBase, background: '#555' }}>
+        <button
+          type="button"
+          onClick={payment.reset}
+          style={{
+            ...buttonBase,
+            backgroundColor: '#3a3f4b',
+            backgroundImage: SHEEN,
+            boxShadow: sombra(false),
+          }}
+        >
           Tentar de novo
         </button>
       </div>
@@ -142,8 +178,21 @@ export function AroButton({
       <button
         type="button"
         disabled={payment.isBusy}
-        onMouseEnter={prefetchBaseSdk}
-        onFocus={prefetchBaseSdk}
+        onMouseEnter={() => {
+          setHover(true);
+          prefetchBaseSdk();
+        }}
+        onMouseLeave={() => {
+          setHover(false);
+          setPress(false);
+        }}
+        onPointerDown={() => setPress(true)}
+        onPointerUp={() => setPress(false)}
+        onFocus={() => {
+          setHover(true);
+          prefetchBaseSdk();
+        }}
+        onBlur={() => setHover(false)}
         onClick={() => {
           void payment.start({
             ...(itemIds ? { itemIds } : {}),
@@ -153,8 +202,14 @@ export function AroButton({
         }}
         style={{
           ...buttonBase,
-          background: payment.isBusy ? '#8a8a8a' : brand,
+          backgroundColor: brand,
+          backgroundImage: hover && !payment.isBusy ? SHEEN_HOVER : SHEEN,
+          boxShadow: sombra(hover && !payment.isBusy),
           cursor: payment.isBusy ? 'progress' : 'pointer',
+          /* Ocupado nao vira cinza: perder a cor da marca no meio do
+             pagamento parece que algo quebrou. Dessatura e mantem. */
+          filter: payment.isBusy ? 'saturate(.55) brightness(.85)' : 'none',
+          transform: press && !payment.isBusy ? 'translateY(1px)' : 'none',
         }}
       >
         {payment.status === 'starting'

@@ -31,6 +31,17 @@ function el<K extends keyof HTMLElementTagNameMap>(
   return node;
 }
 
+const SHEEN = 'linear-gradient(180deg, rgba(255,255,255,.16), rgba(0,0,0,.12))';
+const SHEEN_HOVER = 'linear-gradient(180deg, rgba(255,255,255,.26), rgba(0,0,0,.06))';
+
+function sombra(forte: boolean): string {
+  return [
+    'inset 0 1px 0 rgba(255,255,255,.22)',
+    'inset 0 -1px 0 rgba(0,0,0,.14)',
+    forte ? '0 10px 26px -10px rgba(0,0,0,.75)' : '0 6px 18px -10px rgba(0,0,0,.7)',
+  ].join(', ');
+}
+
 function clock(ms: number): string {
   const total = Math.floor(ms / 1000);
   return `${String(Math.floor(total / 60)).padStart(2, '0')}:${String(total % 60).padStart(2, '0')}`;
@@ -62,19 +73,45 @@ export function mount(
     maxWidth: '420px',
   });
 
+  /* Mesma logica do AroButton: a cor da marca vai no backgroundColor, que
+     aceita qualquer valor CSS, e o degrade de branco e preto translucidos
+     vai por cima no backgroundImage. Assim o relevo funciona com qualquer
+     cor e a cor chapada e o fallback. */
   const button = el('button', {
     appearance: 'none',
     border: 'none',
     borderRadius: '999px',
-    background: brand,
+    backgroundColor: brand,
+    backgroundImage: SHEEN,
+    boxShadow: sombra(false),
     color: '#fff',
     cursor: 'pointer',
     fontSize: '16px',
     fontWeight: '600',
-    padding: '14px 24px',
+    letterSpacing: '-0.01em',
+    lineHeight: '1.2',
+    padding: '15px 24px',
+    transition: 'transform .12s ease, box-shadow .18s ease, filter .18s ease',
     width: '100%',
   });
   button.type = 'button';
+
+  button.addEventListener('pointerenter', () => {
+    if (button.disabled) return;
+    button.style.backgroundImage = SHEEN_HOVER;
+    button.style.boxShadow = sombra(true);
+  });
+  button.addEventListener('pointerleave', () => {
+    button.style.backgroundImage = SHEEN;
+    button.style.boxShadow = sombra(false);
+    button.style.transform = 'none';
+  });
+  button.addEventListener('pointerdown', () => {
+    if (!button.disabled) button.style.transform = 'translateY(1px)';
+  });
+  button.addEventListener('pointerup', () => {
+    button.style.transform = 'none';
+  });
 
   const note = el('p', { fontSize: '13px', lineHeight: '1.5', margin: '0', opacity: '0.75' });
 
@@ -96,16 +133,19 @@ export function mount(
 
   function idle() {
     button.disabled = false;
-    button.style.background = brand;
+    button.style.backgroundColor = brand;
+    button.style.filter = 'none';
     button.style.cursor = 'pointer';
     button.textContent = defaultLabel;
     note.textContent = '';
     link.style.display = 'none';
   }
 
+  /* Ocupado dessatura em vez de virar cinza: perder a cor da marca no meio
+     do pagamento parece que algo quebrou. */
   function busy(text: string) {
     button.disabled = true;
-    button.style.background = '#8a8a8a';
+    button.style.filter = 'saturate(.55) brightness(.85)';
     button.style.cursor = 'progress';
     button.textContent = text;
   }
@@ -150,7 +190,8 @@ export function mount(
 
     if (result.status === 'expired' || result.status === 'failed') {
       button.disabled = false;
-      button.style.background = '#555';
+      button.style.backgroundColor = '#3a3f4b';
+      button.style.filter = 'none';
       button.style.cursor = 'pointer';
       button.textContent = 'Tentar de novo';
       note.textContent =
