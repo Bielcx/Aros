@@ -360,42 +360,6 @@ code { font-family: var(--mono); }
 .m.no { color: var(--stop); }
 .honest-list small { color: var(--ink-faint); display: block; font-size: 13px; }
 
-/* ---------- precos ---------- */
-
-.plans { display: grid; gap: 18px; grid-template-columns: 1fr 1fr; }
-@media (max-width: 720px) { .plans { grid-template-columns: 1fr; } }
-
-.plan {
-  background: var(--surface);
-  border: 1px solid var(--rule);
-  border-radius: var(--radius);
-  display: flex;
-  flex-direction: column;
-  padding: 28px;
-}
-.plan.lead { border-color: rgba(0, 82, 255, .45); box-shadow: 0 0 0 1px rgba(0, 82, 255, .2), 0 30px 70px -50px var(--blue); }
-.plan-badge {
-  background: var(--surface-2);
-  border-radius: 999px;
-  color: var(--ink-faint);
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: .08em;
-  padding: 4px 11px;
-  text-transform: uppercase;
-  width: fit-content;
-}
-.plan.lead .plan-badge { background: rgba(0, 82, 255, .16); color: var(--blue-lift); }
-.plan h3 { font-size: 21px; font-weight: 600; letter-spacing: -0.02em; margin: 16px 0 4px; }
-.plan .price { font-family: var(--mono); font-size: 34px; font-weight: 500; letter-spacing: -0.03em; }
-.plan .price small { color: var(--ink-faint); font-size: 14px; font-weight: 400; }
-.plan .desc { color: var(--ink-soft); font-size: 14px; margin: 10px 0 22px; }
-.plan ul { display: grid; gap: 11px; list-style: none; margin: 0 0 26px; padding: 0; }
-.plan li { color: var(--ink-soft); display: grid; font-size: 14.5px; gap: 10px; grid-template-columns: 16px 1fr; }
-.plan li .m { color: var(--blue-lift); font-family: var(--mono); }
-.plan .btn { margin-top: auto; width: 100%; }
-.btn[aria-disabled="true"] { cursor: not-allowed; opacity: .5; }
-
 /* ---------- faq ---------- */
 
 .faq { display: grid; gap: 10px; }

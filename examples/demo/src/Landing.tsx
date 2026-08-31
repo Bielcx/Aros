@@ -355,8 +355,9 @@ export function Landing() {
               </div>
               <h3>Aceitar — existe hoje</h3>
               <p>
-                O botão, a confirmação on-chain e o recibo verificável. Aberto e gratuito
-                para sempre: é a distribuição, não a receita.
+                O botão, a confirmação on-chain e o recibo verificável. Grátis para sempre,
+                MIT — ele roda no navegador de quem paga e o código é aberto, então cobrar
+                por ele seria fingir um cadeado que não existe.
               </p>
             </div>
             <div className="feat">
@@ -506,81 +507,6 @@ export function Landing() {
               <dd>0</dd>
             </div>
           </dl>
-        </div>
-      </section>
-
-      <section id="precos">
-        <div className="wrap">
-          <span className="eyebrow">Preços</span>
-          <h2 className="h2">A camada de aceitação é grátis. Sempre.</h2>
-          <p className="lede" style={{ marginBottom: 32 }}>
-            Ela roda no navegador de quem paga e o código é aberto — cobrar por ela seria
-            fingir um cadeado que não existe. O que se cobra é o que precisa de servidor, e
-            isso ainda está sendo construído.
-          </p>
-
-          <div className="plans">
-            <div className="plan lead">
-              <span className="plan-badge">Disponível</span>
-              <h3>Aceitar</h3>
-              <div className="price">
-                R$ 0<small> /para sempre</small>
-              </div>
-              <p className="desc">Tudo que você precisa para receber. Licença MIT.</p>
-              <ul>
-                <li>
-                  <span className="m">✓</span> Botão de cobrança em USDC
-                </li>
-                <li>
-                  <span className="m">✓</span> Confirmação automática on-chain
-                </li>
-                <li>
-                  <span className="m">✓</span> Recibo verificável por link
-                </li>
-                <li>
-                  <span className="m">✓</span> Contato de suporte por WhatsApp
-                </li>
-                <li>
-                  <span className="m">✓</span> Sem limite de valor ou de volume
-                </li>
-              </ul>
-              <a className="btn btn-primary" href={REPO}>
-                Pegar no GitHub
-              </a>
-            </div>
-
-            <div className="plan">
-              <span className="plan-badge">Em construção</span>
-              <h3>Converter e administrar</h3>
-              <div className="price">
-                — <small>preço a definir</small>
-              </div>
-              <p className="desc">
-                As camadas 2 e 3. Nada disso existe hoje — está aqui para você saber para
-                onde vai, não para comprar.
-              </p>
-              <ul>
-                <li>
-                  <span className="m">·</span> Conversão para reais via parceiro licenciado
-                </li>
-                <li>
-                  <span className="m">·</span> Painel com histórico de cobranças
-                </li>
-                <li>
-                  <span className="m">·</span> Webhook para o seu sistema
-                </li>
-                <li>
-                  <span className="m">·</span> Recibo por e-mail e WhatsApp
-                </li>
-                <li>
-                  <span className="m">·</span> Conciliação para a contabilidade
-                </li>
-              </ul>
-              <span className="btn btn-ghost" aria-disabled="true">
-                Ainda não disponível
-              </span>
-            </div>
-          </div>
         </div>
       </section>
 
