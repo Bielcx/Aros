@@ -678,28 +678,69 @@ footer.site .row .sep { margin-left: auto; }
 }
 .demo-body .aro-slot > div { max-width: none !important; }
 
-/* ---------- titulo que se monta na rolagem ----------
-   A perspectiva mora aqui: sem ela o rotateY de cada letra vira achatamento
-   horizontal em vez de giro. */
-.assemble {
-  display: inline-block;
-  perspective: 800px;
-  transform-style: preserve-3d;
-}
-.assemble-ch {
-  display: inline-block;
-  transform-origin: center;
-  will-change: transform, opacity;
-}
-/* Espaco precisa de largura propria: inline-block com conteudo em branco
-   colapsa e as palavras grudam. */
-.assemble-sp { width: .28em; }
+/* ---------- cobranca por link (/c) ---------- */
 
-.sr {
-  clip-path: inset(50%);
-  height: 1px;
-  overflow: hidden;
-  position: absolute;
-  white-space: nowrap;
-  width: 1px;
+.charge-in { margin: 0 auto; max-width: 460px; padding: 56px 20px 72px; }
+
+.charge { text-align: center; }
+.charge-from { color: #5c6472; font-size: 14px; margin: 0 0 6px; }
+.charge-amount {
+  font-size: 44px;
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+  margin: 0;
 }
+.charge-note { color: #5c6472; font-size: 15px; margin: 10px 0 0; }
+
+.charge-meta {
+  background: #fff;
+  border: 1px solid #e4e2dd;
+  border-radius: 14px;
+  display: grid;
+  gap: 14px;
+  margin: 28px 0 22px;
+  padding: 18px 20px;
+  text-align: left;
+}
+.charge-meta dt { color: #8b93a3; font-size: 12px; margin-bottom: 2px; }
+.charge-meta dd { font-size: 14.5px; margin: 0; }
+.charge-meta dd.addr {
+  font-family: var(--mono);
+  font-size: 12.5px;
+  line-height: 1.5;
+  word-break: break-all;
+}
+
+/* O aviso e deliberadamente sobrio: quem paga precisa ler o endereco, e um
+   alerta vermelho gritando faz o olho pular a linha. */
+.charge-warn {
+  color: #8b93a3;
+  font-size: 12.5px;
+  line-height: 1.55;
+  margin: 18px 0 0;
+  text-align: left;
+}
+
+.charge-bad {
+  background: #fff;
+  border: 1px solid #e4e2dd;
+  border-left: 3px solid #9c2231;
+  border-radius: 14px;
+  padding: 24px;
+}
+.charge-bad h1 { font-size: 19px; font-weight: 600; margin: 0 0 12px; }
+.charge-bad ul { color: #5c6472; font-size: 14.5px; margin: 0; padding-left: 18px; }
+.charge-bad li { margin-bottom: 6px; }
+.charge-hint { color: #8b93a3; font-size: 13px; margin: 14px 0 0; }
+.charge-hint code { background: #f7f6f3; border-radius: 4px; font-size: 12px; padding: 2px 5px; }
+
+.aside code.inline {
+  background: var(--surface-2);
+  border-radius: 4px;
+  font-family: var(--mono);
+  font-size: 12.5px;
+  padding: 2px 6px;
+  word-break: break-all;
+}
+.aside a { color: var(--blue-lift); text-decoration: underline; text-underline-offset: 2px; }

@@ -3,8 +3,6 @@ import { AroButton } from 'aros/react';
 import { config } from './aros.config.js';
 import { ClosingPlasma } from './ClosingPlasma.js';
 import { NeonBorder } from './NeonBorder.js';
-import { ScrollAssemble } from './ScrollAssemble.js';
-import { TiltCard } from './TiltCard.js';
 
 const REPO = 'https://github.com/Bielcx/Aros';
 
@@ -189,14 +187,10 @@ export function Landing() {
       <section id="conta">
         <div className="wrap">
           <span className="eyebrow">A conta</span>
-          <h2 className="h2">
-            <ScrollAssemble texto="Isso não é sobre cripto." />{' '}
-            <ScrollAssemble texto="É sobre quanto sobra." />
-          </h2>
+          <h2 className="h2">Isso não é sobre cripto. É sobre quanto sobra.</h2>
           <div style={{ height: 26 }} />
 
           <div className="versus">
-            <TiltCard brilho={0.3}>
             <div className="vs-card bad">
               <h3>Receber do exterior, do jeito de hoje</h3>
               <div className="vs-row">
@@ -216,9 +210,6 @@ export function Landing() {
                 <b>acontece</b>
               </div>
             </div>
-            </TiltCard>
-
-            <TiltCard brilho={0.45}>
             <div className="vs-card good">
               <h3>Aros · USDC na Base</h3>
               <div className="vs-row">
@@ -238,7 +229,6 @@ export function Landing() {
                 <b>0,38% ou isento</b>
               </div>
             </div>
-            </TiltCard>
           </div>
 
           <p className="why-block">
