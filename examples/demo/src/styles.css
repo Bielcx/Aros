@@ -560,3 +560,15 @@ footer.site .row .sep { margin-left: auto; }
   max-width: 72ch;
   padding-left: 16px;
 }
+
+/* Caso secundario: visivelmente subordinado, para nao competir com a tese. */
+.aside {
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--warn);
+  border-radius: var(--radius-sm);
+  margin-top: 26px;
+  padding: 20px 22px;
+}
+.aside h3 { color: var(--warn); font-size: 14px; font-weight: 600; margin-bottom: 8px; }
+.aside p { color: var(--ink-soft); font-size: 14px; margin: 0; max-width: 74ch; }
