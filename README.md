@@ -14,7 +14,7 @@ nem servidor para cair.
 
 ```
 packages/aros      a biblioteca (é isso que se vende)
-examples/demo      loja de exemplo em Base Sepolia, para testar
+apps/site          o site do produto, a loja de demonstração e a cobrança por link
 ```
 
 ## Como funciona

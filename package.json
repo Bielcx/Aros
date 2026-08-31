@@ -5,12 +5,12 @@
   "description": "Aros - checkout em USDC na rede Base para lojas pequenas",
   "workspaces": [
     "packages/*",
-    "examples/*"
+    "apps/*"
   ],
   "scripts": {
     "build": "npm run build -w aros",
-    "dev": "npm run dev -w @aros/demo",
-    "typecheck": "npm run typecheck -w aros && npm run typecheck -w @aros/demo",
+    "dev": "npm run dev -w @aros/site",
+    "typecheck": "npm run typecheck -w aros && npm run typecheck -w @aros/site",
     "test": "npm run test -w aros",
     "predev": "npm run build"
   },
