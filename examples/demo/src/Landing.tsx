@@ -3,6 +3,7 @@ import { AroButton } from 'aros/react';
 import { config } from './aros.config.js';
 import { ClosingPlasma } from './ClosingPlasma.js';
 import { NeonBorder } from './NeonBorder.js';
+import { ScrollAssemble } from './ScrollAssemble.js';
 import { TiltCard } from './TiltCard.js';
 
 const REPO = 'https://github.com/Bielcx/Aros';
@@ -188,7 +189,10 @@ export function Landing() {
       <section id="conta">
         <div className="wrap">
           <span className="eyebrow">A conta</span>
-          <h2 className="h2">Isso não é sobre cripto. É sobre quanto sobra.</h2>
+          <h2 className="h2">
+            <ScrollAssemble texto="Isso não é sobre cripto." />{' '}
+            <ScrollAssemble texto="É sobre quanto sobra." />
+          </h2>
           <div style={{ height: 26 }} />
 
           <div className="versus">

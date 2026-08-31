@@ -677,3 +677,29 @@ footer.site .row .sep { margin-left: auto; }
   padding-top: 18px;
 }
 .demo-body .aro-slot > div { max-width: none !important; }
+
+/* ---------- titulo que se monta na rolagem ----------
+   A perspectiva mora aqui: sem ela o rotateY de cada letra vira achatamento
+   horizontal em vez de giro. */
+.assemble {
+  display: inline-block;
+  perspective: 800px;
+  transform-style: preserve-3d;
+}
+.assemble-ch {
+  display: inline-block;
+  transform-origin: center;
+  will-change: transform, opacity;
+}
+/* Espaco precisa de largura propria: inline-block com conteudo em branco
+   colapsa e as palavras grudam. */
+.assemble-sp { width: .28em; }
+
+.sr {
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
