@@ -96,6 +96,22 @@ h1, h2, h3 { margin: 0; text-wrap: balance; }
 .btn-ghost { border-color: var(--rule-strong); color: var(--ink); }
 .btn-ghost:hover { background: var(--surface-2); border-color: var(--ink-faint); }
 
+/* Botao feito para receber o beam. O fundo azul solido do btn-primary
+   apagava o efeito: brilho branco sobre #0052ff quase nao tem contraste, e a
+   propria doc do componente avisa que o variant preenchido briga com ele.
+   Aqui o fundo e escuro com um leve puxao para o azul, entao o arco aparece.
+   A borda fixa por baixo existe para o contorno nao piscar quando o arco
+   esta do outro lado do botao. */
+.btn-beam {
+  background: linear-gradient(180deg, #151b29, #0d1017);
+  border-color: var(--rule-strong);
+  color: var(--ink);
+}
+.btn-beam:hover {
+  background: linear-gradient(180deg, #1b2334, #11151e);
+  border-color: var(--ink-faint);
+}
+
 section { padding: 96px 0; }
 section + section { border-top: 1px solid var(--rule); }
 
@@ -668,7 +684,7 @@ footer.site .row .sep { margin-left: auto; }
 .beam-ring {
   --beam-angle: 0deg;
   animation: beam-spin 3s linear infinite;
-  background: linear-gradient(90deg, #8ec5ff, #ffffff 45%, #d6e9ff);
+  background: linear-gradient(90deg, #4d93ff, #ffffff 45%, #9fcbff);
   border-radius: inherit;
   inset: 0;
   padding: 1.6px;
