@@ -20,37 +20,34 @@ export function Receipt({ link }: { link: ParsedReceiptLink }) {
   }, [link]);
 
   return (
-    <section style={{ display: 'grid', gap: 12 }}>
-      <h1 style={{ fontSize: 22, margin: 0 }}>Comprovante {link.reference}</h1>
-      <p style={{ margin: 0, opacity: 0.7 }}>{formatAmount(link.amount)}</p>
+    <section className="receipt">
+      <span className="ref">PEDIDO {link.reference}</span>
+      <h1>{formatAmount(link.amount)}</h1>
 
       {result === null ? (
-        <p style={{ margin: 0 }}>Conferindo na chain...</p>
+        <p className="pending">Conferindo na chain…</p>
       ) : result.valid ? (
-        <div style={{ background: '#0f2a1a', border: '1px solid #1f7a4d', borderRadius: 12, padding: 16 }}>
-          <strong style={{ color: '#4ade80' }}>Pagamento confirmado on-chain.</strong>
-          <p style={{ fontSize: 13, margin: '8px 0 0', opacity: 0.8, wordBreak: 'break-all' }}>
+        <div className="verdict good">
+          <b>Pagamento confirmado on-chain.</b>
+          <p>
             De {result.sender} para {result.recipient}
           </p>
         </div>
       ) : (
-        <div style={{ background: '#2a0f14', border: '1px solid #7a1f2f', borderRadius: 12, padding: 16 }}>
-          <strong style={{ color: '#f87171' }}>Nao foi possivel confirmar.</strong>
-          <p style={{ fontSize: 13, margin: '8px 0 0', opacity: 0.8 }}>{result.reason}</p>
+        <div className="verdict bad">
+          <b>Não foi possível confirmar.</b>
+          <p>{result.reason}</p>
         </div>
       )}
 
-      <a
-        href={explorerUrl(link.paymentId, link.testnet)}
-        target="_blank"
-        rel="noreferrer"
-        style={{ color: '#0052FF', fontSize: 14 }}
-      >
-        Abrir no explorador
-      </a>
-      <a href="/" style={{ color: '#8b93a7', fontSize: 14 }}>
-        Voltar para a loja
-      </a>
+      <div className="links">
+        <a href={explorerUrl(link.paymentId, link.testnet)} target="_blank" rel="noreferrer">
+          Abrir no explorador
+        </a>
+        <a className="muted" href="/">
+          Voltar para a loja
+        </a>
+      </div>
     </section>
   );
 }

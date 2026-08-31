@@ -4,12 +4,31 @@ import { AroButton } from 'aros/react';
 import { config } from './aros.config.js';
 import { Receipt } from './Receipt.js';
 
-const page = {
-  margin: '0 auto',
-  maxWidth: 560,
-  padding: '48px 20px 96px',
-  fontFamily: 'system-ui, -apple-system, Segoe UI, Roboto, sans-serif',
-} as const;
+/** So a vitrine e enfeitada: o kit nao pede imagem nenhuma. */
+const THUMBS: Record<string, string> = {
+  shape: '🛹',
+  truck: '🔩',
+  roda: '⚪',
+  rolamento: '⚙️',
+};
+
+function Shell({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="shell">
+      <div className="bar">
+        <div className="bar-logo" aria-hidden="true">
+          🛹
+        </div>
+        <div className="bar-name">{config.storeName}</div>
+        {config.testnet ? <div className="bar-net">Base Sepolia · dinheiro de teste</div> : null}
+      </div>
+      {children}
+      <p className="made">
+        Checkout por <b>Aros</b> — pagamento em USDC na rede Base, sem backend
+      </p>
+    </div>
+  );
+}
 
 export function App() {
   const receiptLink = useMemo(() => parseReceiptUrl(window.location.search), []);
@@ -17,74 +36,60 @@ export function App() {
 
   if (receiptLink) {
     return (
-      <main style={page}>
+      <Shell>
         <Receipt link={receiptLink} />
-      </main>
+      </Shell>
     );
   }
 
   const items = config.items ?? [];
-  const total = sumPrices(
-    items.filter((item) => selected.includes(item.id)).map((item) => item.price),
-  );
+  const chosen = items.filter((item) => selected.includes(item.id));
+  const total = sumPrices(chosen.map((item) => item.price));
+
+  function toggle(id: string) {
+    setSelected((prev) => (prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]));
+  }
 
   return (
-    <main style={page}>
-      <header style={{ marginBottom: 28 }}>
-        <h1 style={{ fontSize: 26, margin: '0 0 6px' }}>{config.storeName}</h1>
-        <p style={{ margin: 0, opacity: 0.6, fontSize: 14 }}>
-          Pagamento em USDC na Base {config.testnet ? '(Sepolia - dinheiro de teste)' : ''}
-        </p>
-      </header>
+    <Shell>
+      <h1>Monte seu setup</h1>
+      <p className="sub">Escolha as peças e pague em USDC. A confirmação aparece aqui mesmo.</p>
 
-      <ul style={{ display: 'grid', gap: 8, listStyle: 'none', margin: '0 0 24px', padding: 0 }}>
+      <ul className="catalog">
         {items.map((item) => {
-          const active = selected.includes(item.id);
+          const on = selected.includes(item.id);
           return (
             <li key={item.id}>
-              <label
-                style={{
-                  alignItems: 'center',
-                  background: active ? '#141a26' : '#10141c',
-                  border: `1px solid ${active ? '#0052FF' : '#222937'}`,
-                  borderRadius: 12,
-                  cursor: 'pointer',
-                  display: 'flex',
-                  gap: 12,
-                  padding: '14px 16px',
-                }}
-              >
-                <input
-                  type="checkbox"
-                  checked={active}
-                  onChange={() => {
-                    setSelected((prev) =>
-                      prev.includes(item.id)
-                        ? prev.filter((id) => id !== item.id)
-                        : [...prev, item.id],
-                    );
-                  }}
-                />
-                <span style={{ flex: 1 }}>
-                  {item.name}
-                  {item.description ? (
-                    <small style={{ display: 'block', opacity: 0.55 }}>{item.description}</small>
-                  ) : null}
+              <label className={on ? 'card on' : 'card'}>
+                <input type="checkbox" checked={on} onChange={() => toggle(item.id)} />
+                <span className="thumb" aria-hidden="true">
+                  {THUMBS[item.id] ?? '📦'}
                 </span>
-                <strong>{formatAmount(item.price)}</strong>
+                <span className="card-text">
+                  <span className="card-name">{item.name}</span>
+                  {item.description ? <small className="card-desc">{item.description}</small> : null}
+                </span>
+                <span className="card-price">{formatAmount(item.price)}</span>
               </label>
             </li>
           );
         })}
       </ul>
 
-      <div style={{ borderTop: '1px solid #222937', paddingTop: 20 }}>
-        <p style={{ display: 'flex', justifyContent: 'space-between', margin: '0 0 16px' }}>
-          <span style={{ opacity: 0.6 }}>Total</span>
-          <strong>{formatAmount(total)}</strong>
+      <div className="checkout">
+        {chosen.map((item) => (
+          <p className="line" key={item.id}>
+            <span>{item.name}</span>
+            <b>{formatAmount(item.price)}</b>
+          </p>
+        ))}
+
+        <p className="line total">
+          <span>Total</span>
+          <b>{formatAmount(total)}</b>
         </p>
 
-        {selected.length > 0 ? (
+        {chosen.length > 0 ? (
           <AroButton
             config={config}
             itemIds={selected}
@@ -93,9 +98,9 @@ export function App() {
             }}
           />
         ) : (
-          <p style={{ opacity: 0.5, fontSize: 14 }}>Escolha ao menos um item.</p>
+          <p className="empty">Escolha ao menos uma peça.</p>
         )}
       </div>
-    </main>
+    </Shell>
   );
 }
