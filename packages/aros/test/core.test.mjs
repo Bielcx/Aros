@@ -6,6 +6,7 @@ import { test } from 'node:test';
 import {
   buildAttributionSuffix,
   createOrder,
+  parseChargeLink,
   createReference,
   defineConfig,
   normalizeAmount,
@@ -158,4 +159,44 @@ test('o recibo sobrevive so na URL', () => {
   assert.equal(parsed?.amount, '47.00');
   assert.equal(parsed?.testnet, true);
   assert.equal(parseReceiptUrl('?nada=1'), null);
+});
+
+test('parseChargeLink aceita uma cobranca completa', () => {
+  const { input, amount, config, problems } = parseChargeLink(
+    '?to=0xFe21034794A5a574B94fE4fDfD16e005F1C96e51&amount=1200&ref=INV-042&name=Estudio',
+  );
+  assert.deepEqual(problems, []);
+  assert.equal(amount, 1200);
+  assert.equal(input.reference, 'INV-042');
+  assert.equal(config.storeName, 'Estudio');
+});
+
+test('parseChargeLink usa virgula decimal, como quem digita em portugues', () => {
+  const { amount, problems } = parseChargeLink(
+    '?to=0xFe21034794A5a574B94fE4fDfD16e005F1C96e51&amount=49,90',
+  );
+  assert.deepEqual(problems, []);
+  assert.equal(amount, 49.9);
+});
+
+test('parseChargeLink so vai para mainnet quando o link pede', () => {
+  const base = '?to=0xFe21034794A5a574B94fE4fDfD16e005F1C96e51&amount=10';
+  assert.equal(parseChargeLink(base).config.testnet, true);
+  assert.equal(parseChargeLink(base + '&net=sepolia').config.testnet, true);
+  assert.equal(parseChargeLink(base + '&net=main').config.testnet, false);
+});
+
+test('parseChargeLink reclama de tudo que falta, nao so do primeiro', () => {
+  const { problems } = parseChargeLink('?amount=abc');
+  assert.ok(problems.length >= 2, `esperava varios problemas, veio ${problems.length}`);
+  assert.ok(problems.some((p) => p.includes('abc')));
+  assert.ok(problems.some((p) => p.includes('recipient')));
+});
+
+test('parseChargeLink nao aceita valor zero nem negativo', () => {
+  const to = '0xFe21034794A5a574B94fE4fDfD16e005F1C96e51';
+  for (const bad of ['0', '-5', '', 'NaN']) {
+    const { problems } = parseChargeLink(`?to=${to}&amount=${bad}`);
+    assert.ok(problems.length > 0, `"${bad}" deveria ser recusado`);
+  }
 });

@@ -11,6 +11,12 @@ export interface AroButtonProps {
   itemIds?: string[];
   /** Valor avulso, quando o preco nao vem do config. */
   amount?: number | string;
+  /**
+   * Referencia do pedido. Omita para gerar uma (ARO-XXXXXXXX).
+   * Use quando o pedido ja tem numero do lado de quem cobra -- uma nota, uma
+   * fatura -- para o recibo casar com o sistema dele.
+   */
+  reference?: string;
   /** Texto do botao. Default: "Pagar <valor> em USDC". */
   label?: ReactNode;
   onConfirmed?: (receipt: AroReceipt) => void;
@@ -62,6 +68,7 @@ export function AroButton({
   config,
   itemIds,
   amount,
+  reference,
   label,
   onConfirmed,
   className,
@@ -141,6 +148,7 @@ export function AroButton({
           void payment.start({
             ...(itemIds ? { itemIds } : {}),
             ...(amount !== undefined ? { amount } : {}),
+            ...(reference ? { reference } : {}),
           });
         }}
         style={{

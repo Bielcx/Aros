@@ -3,6 +3,8 @@
 export { formatAmount, normalizeAmount, sumPrices, USDC_DECIMALS } from './amount.js';
 export { BASE_BLUE, DEFAULTS, defineConfig, validateConfig } from './config.js';
 export type { ResolvedAroConfig } from './config.js';
+export { parseChargeLink } from './chargeLink.js';
+export type { ChargeLinkInput, ParsedChargeLink } from './chargeLink.js';
 export { createOrder } from './createOrder.js';
 export type { CreateOrderInput } from './createOrder.js';
 export { AroError, toMessage } from './errors.js';

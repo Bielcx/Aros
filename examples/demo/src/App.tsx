@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { formatAmount, parseReceiptUrl, sumPrices } from 'aros';
 import { AroButton } from 'aros/react';
 import { config } from './aros.config.js';
+import { Charge } from './Charge.js';
 import { Landing } from './Landing.js';
 import { Receipt } from './Receipt.js';
 
@@ -19,9 +20,11 @@ const THUMBS: Record<string, string> = {
  */
 export function App() {
   const receiptLink = useMemo(() => parseReceiptUrl(window.location.search), []);
-  const isShop = window.location.pathname.startsWith('/loja') || receiptLink !== null;
+  const path = window.location.pathname;
 
-  return isShop ? <Shop receiptLink={receiptLink} /> : <Landing />;
+  if (path.startsWith('/c')) return <Charge />;
+  if (path.startsWith('/loja') || receiptLink !== null) return <Shop receiptLink={receiptLink} />;
+  return <Landing />;
 }
 
 function Shop({ receiptLink }: { receiptLink: ReturnType<typeof parseReceiptUrl> }) {

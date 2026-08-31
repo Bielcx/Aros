@@ -335,6 +335,20 @@ export function Landing() {
               </p>
             </div>
           </div>
+
+          <div className="aside" style={{ borderLeftColor: 'var(--blue)' }}>
+            <h3 style={{ color: 'var(--blue-lift)' }}>Não tem site? Manda um link.</h3>
+            <p>
+              Quem fatura por projeto não tem página de checkout — tem invoice. A cobrança
+              inteira cabe numa URL, para colar num e-mail ou no WhatsApp:{' '}
+              <code className="inline">/c?to=0xCarteira&amp;amount=1200&amp;ref=INV-042</code>.
+              Mesmo fluxo, mesma confirmação automática, mesmo recibo.{' '}
+              <a href="/c?to=0xFe21034794A5a574B94fE4fDfD16e005F1C96e51&amount=1200&ref=INV-042&name=Estúdio%20Cria&note=Identidade%20visual%20—%20parcela%202%20de%203">
+                Ver uma cobrança de exemplo
+              </a>
+              .
+            </p>
+          </div>
         </div>
       </section>
 
