@@ -38,22 +38,28 @@ function Shop({ receiptLink }: { receiptLink: ReturnType<typeof parseReceiptUrl>
   return (
     <div className="shop">
       <div className="shop-in">
-        <div className="bar">
+        <header className="bar">
           <div className="bar-logo" aria-hidden="true">
             🛹
           </div>
-          <div className="bar-name">{config.storeName}</div>
-          {config.testnet ? <div className="bar-net">Base Sepolia · dinheiro de teste</div> : null}
-        </div>
+          <div className="bar-id">
+            <div className="bar-name">{config.storeName}</div>
+            <div className="bar-tag">São Paulo, Brasil · enviamos para o mundo</div>
+          </div>
+          {config.testnet ? <div className="bar-net">Base Sepolia · teste</div> : null}
+        </header>
 
         {receiptLink ? (
           <Receipt link={receiptLink} />
         ) : (
           <>
-            <h1>Monte seu setup</h1>
-            <p className="sub">
-              Escolha as peças e pague em USDC. A confirmação aparece aqui mesmo.
-            </p>
+            <div className="shop-hero">
+              <h1>Monte seu setup</h1>
+              <p className="sub">
+                Preços em dólar, pagamento em USDC. Sem conversão, sem cartão internacional,
+                sem taxa escondida no câmbio.
+              </p>
+            </div>
 
             <ul className="catalog">
               {items.map((item) => {
@@ -79,28 +85,42 @@ function Shop({ receiptLink }: { receiptLink: ReturnType<typeof parseReceiptUrl>
             </ul>
 
             <div className="checkout">
-              {chosen.map((item) => (
-                <p className="line" key={item.id}>
-                  <span>{item.name}</span>
-                  <b>{formatAmount(item.price)}</b>
-                </p>
-              ))}
-
-              <p className="line total">
-                <span>Total</span>
-                <b>{formatAmount(total)}</b>
-              </p>
+              <h2 className="checkout-title">Seu pedido</h2>
 
               {chosen.length > 0 ? (
-                <AroButton
-                  config={config}
-                  itemIds={selected}
-                  onConfirmed={(receipt) => {
-                    console.info('[demo] confirmado', receipt);
-                  }}
-                />
+                <>
+                  {chosen.map((item) => (
+                    <p className="line" key={item.id}>
+                      <span>{item.name}</span>
+                      <b>{formatAmount(item.price)}</b>
+                    </p>
+                  ))}
+                  <p className="line">
+                    <span>Envio internacional</span>
+                    <b className="free">grátis</b>
+                  </p>
+
+                  <p className="line total">
+                    <span>Total</span>
+                    <b>{formatAmount(total)}</b>
+                  </p>
+
+                  <AroButton
+                    config={config}
+                    itemIds={selected}
+                    onConfirmed={(receipt) => {
+                      console.info('[demo] confirmado', receipt);
+                    }}
+                  />
+
+                  <ul className="trust">
+                    <li>Vai direto para a carteira da loja</li>
+                    <li>Sem cadastro e sem dados de cartão</li>
+                    <li>Comprovante que se verifica sozinho</li>
+                  </ul>
+                </>
               ) : (
-                <p className="empty">Escolha ao menos uma peça.</p>
+                <p className="empty">Escolha ao menos uma peça para continuar.</p>
               )}
             </div>
           </>

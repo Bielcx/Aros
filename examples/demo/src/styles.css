@@ -465,7 +465,9 @@ footer.site .row .sep { margin-left: auto; }
   justify-content: center;
   width: 38px;
 }
+.shop .bar-id { line-height: 1.3; }
 .shop .bar-name { font-size: 16px; font-weight: 600; letter-spacing: -0.01em; }
+.shop .bar-tag { color: #8b93a3; font-size: 12.5px; }
 .shop .bar-net {
   background: #e4f2ea;
   border-radius: 999px;
@@ -479,8 +481,41 @@ footer.site .row .sep { margin-left: auto; }
 .shop .bar-back { color: #8b93a3; font-size: 13px; }
 .shop .bar-back:hover { color: #16181d; }
 
-.shop h1 { font-size: 27px; font-weight: 700; letter-spacing: -0.025em; line-height: 1.2; margin: 0 0 6px; }
-.shop .sub { color: #5c6472; font-size: 15px; margin: 0 0 28px; }
+.shop-hero { margin-bottom: 26px; }
+.shop h1 { font-size: 29px; font-weight: 700; letter-spacing: -0.03em; line-height: 1.15; margin: 0 0 8px; }
+.shop .sub { color: #5c6472; font-size: 15px; margin: 0; max-width: 46ch; }
+
+.checkout-title {
+  border-bottom: 1px solid #e4e2dd;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .06em;
+  margin: 0 0 16px;
+  padding-bottom: 12px;
+  text-transform: uppercase;
+  color: #5c6472;
+}
+.line b.free { color: #0d6b46; }
+
+.trust {
+  display: grid;
+  gap: 7px;
+  list-style: none;
+  margin: 18px 0 0;
+  padding: 0;
+}
+.trust li {
+  color: #8b93a3;
+  font-size: 12.5px;
+  padding-left: 18px;
+  position: relative;
+}
+.trust li::before {
+  color: #0d6b46;
+  content: "✓";
+  left: 0;
+  position: absolute;
+}
 
 .catalog { display: grid; gap: 10px; list-style: none; margin: 0 0 28px; padding: 0; }
 .card {
@@ -491,9 +526,10 @@ footer.site .row .sep { margin-left: auto; }
   cursor: pointer;
   display: flex;
   gap: 14px;
-  padding: 14px 16px;
-  transition: border-color .12s, box-shadow .12s;
+  padding: 15px 17px;
+  transition: border-color .12s, box-shadow .12s, transform .12s;
 }
+.card:hover { transform: translateY(-1px); }
 .card:hover { border-color: #cfccc4; }
 .card.on { border-color: #0052ff; box-shadow: 0 0 0 1px #0052ff, 0 6px 18px -12px rgba(0, 82, 255, .6); }
 .card input { accent-color: #0052ff; height: 18px; margin: 0; width: 18px; }
