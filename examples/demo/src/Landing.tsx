@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { AroButton } from 'aros/react';
 import { config } from './aros.config.js';
+import { ClosingPlasma } from './ClosingPlasma.js';
 
 const REPO = 'https://github.com/Bielcx/Aros';
 
@@ -636,25 +637,34 @@ export function Landing() {
         </div>
       </section>
 
-      <section>
+      <section className="closing">
         <div className="wrap">
-          <div className="cta">
-            <h2 className="h2" style={{ margin: 0 }}>
-              Teste com dinheiro de mentira agora
-            </h2>
-            <p className="lede">
-              A loja de demonstração roda em Base Sepolia. Dá para completar uma cobrança
-              inteira, receber o comprovante e conferir na blockchain sem gastar nada.
-            </p>
-            <div className="hero-cta">
-              <a className="btn btn-primary" href="/loja">
-                Abrir a demonstração
-              </a>
-              <a className="btn btn-ghost" href={REPO}>
-                Ler o código
-              </a>
+          <ClosingPlasma
+            className="cta"
+            speed={0.6}
+            turbulence={0.85}
+            grain={0.5}
+            sparkle={0.7}
+            opacity={0.9}
+          >
+            <div className="cta-inner">
+              <h2 className="h2" style={{ margin: 0 }}>
+                Teste com dinheiro de mentira agora
+              </h2>
+              <p className="lede">
+                A loja de demonstração roda em Base Sepolia. Dá para completar uma cobrança
+                inteira, receber o comprovante e conferir na blockchain sem gastar nada.
+              </p>
+              <div className="hero-cta">
+                <a className="btn btn-primary" href="/loja">
+                  Abrir a demonstração
+                </a>
+                <a className="btn btn-ghost" href={REPO}>
+                  Ler o código
+                </a>
+              </div>
             </div>
-          </div>
+          </ClosingPlasma>
         </div>
       </section>
 
