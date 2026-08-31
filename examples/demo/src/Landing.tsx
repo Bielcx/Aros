@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { AroButton } from 'aros/react';
 import { config } from './aros.config.js';
 import { ClosingPlasma } from './ClosingPlasma.js';
+import { NeonBorder } from './NeonBorder.js';
+import { TiltCard } from './TiltCard.js';
 
 const REPO = 'https://github.com/Bielcx/Aros';
 
@@ -158,9 +160,9 @@ export function Landing() {
             </p>
 
             <div className="hero-cta">
-              <a className="btn btn-beam beam" href="#conta">
+              <a className="btn btn-beam neon-wrap" href="#conta">
                 Ver a conta
-                <span className="beam-ring" aria-hidden="true" />
+                <NeonBorder cor="#2f74ff" espessura={2} tamanhoArco={45} velocidade={14} />
               </a>
               <a className="btn btn-ghost" href="/loja">
                 Testar sem gastar nada
@@ -208,6 +210,7 @@ export function Landing() {
           <div style={{ height: 26 }} />
 
           <div className="versus">
+            <TiltCard brilho={0.3}>
             <div className="vs-card bad">
               <h3>Receber do exterior, do jeito de hoje</h3>
               <div className="vs-row">
@@ -227,7 +230,9 @@ export function Landing() {
                 <b>acontece</b>
               </div>
             </div>
+            </TiltCard>
 
+            <TiltCard brilho={0.45}>
             <div className="vs-card good">
               <h3>Aros · USDC na Base</h3>
               <div className="vs-row">
@@ -247,6 +252,7 @@ export function Landing() {
                 <b>0,38% ou isento</b>
               </div>
             </div>
+            </TiltCard>
           </div>
 
           <p className="why-block">
