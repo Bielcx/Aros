@@ -381,47 +381,6 @@ export function Landing() {
         </div>
       </section>
 
-      <section id="tese">
-        <div className="wrap">
-          <span className="eyebrow">Para onde vai</span>
-          <h2 className="h2">O botão é a porta de entrada, não o produto final</h2>
-
-          <div className="grid-3" style={{ marginTop: 26 }}>
-            <div className="feat">
-              <div className="feat-icon" aria-hidden="true">
-                1️⃣
-              </div>
-              <h3>Aceitar — existe hoje</h3>
-              <p>
-                O botão, a confirmação on-chain e o recibo verificável. Grátis para sempre,
-                MIT — ele roda no navegador de quem paga e o código é aberto, então cobrar
-                por ele seria fingir um cadeado que não existe.
-              </p>
-            </div>
-            <div className="feat">
-              <div className="feat-icon" aria-hidden="true">
-                2️⃣
-              </div>
-              <h3>Converter — via parceiro</h3>
-              <p>
-                Do USDC para reais na conta, sem abrir corretora. Exige VASP licenciado,
-                então é integração — não algo que o Aros faz sozinho.
-              </p>
-            </div>
-            <div className="feat">
-              <div className="feat-icon" aria-hidden="true">
-                3️⃣
-              </div>
-              <h3>Administrar — depois</h3>
-              <p>
-                Histórico, conciliação, webhook. A parte que roda em servidor e por isso é
-                a parte paga.
-              </p>
-            </div>
-          </div>
-
-        </div>
-      </section>
 
       <section id="estado">
         <div className="wrap">
