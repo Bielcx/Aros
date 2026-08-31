@@ -9,8 +9,10 @@ import type { AroConfig } from 'aros';
  * claro. Ver a secao "A conta" da landing.
  */
 export const config: AroConfig = {
-  // Endereco de exemplo. Troque pelo seu antes de testar de verdade.
-  recipient: '0xFe21034794A5a574B94fE4fDfD16e005F1C96e51',
+  // Carteira dedicada ao projeto, separada da pessoal de proposito: este
+  // endereco fica publico no site, e endereco publico expoe saldo e historico
+  // inteiros a quem abrir o explorador.
+  recipient: '0x51F76DC03D620898bFAd2Cc52DDF984F6d72030c',
   storeName: 'Cria Skateboards',
   brandColor: '#0052FF',
   // Pegue o seu de graca em base.dev > Settings > Builder Code.
