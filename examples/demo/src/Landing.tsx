@@ -205,10 +205,7 @@ export function Landing() {
         <div className="wrap">
           <span className="eyebrow">A conta</span>
           <h2 className="h2">Isso não é sobre cripto. É sobre quanto sobra.</h2>
-          <p className="lede" style={{ marginBottom: 32 }}>
-            Ninguém acorda querendo usar blockchain. Acorda querendo o dinheiro do trabalho
-            que entregou semana passada.
-          </p>
+          <div style={{ height: 26 }} />
 
           <div className="versus">
             <div className="vs-card bad">
@@ -267,9 +264,8 @@ export function Landing() {
         <div className="wrap">
           <span className="eyebrow">A tese</span>
           <h2 className="h2">Por que exportação, e não a loja da esquina</h2>
-          <p className="lede" style={{ marginBottom: 32 }}>
-            O Aros começou apontado para o varejo pequeno. Mudou de alvo por leitura de
-            regra, não por preferência de mercado — e é essa leitura que define o produto.
+          <p className="lede" style={{ marginBottom: 28 }}>
+            O alvo mudou por leitura de regra, não por preferência de mercado.
           </p>
 
           <div className="grid-3">
@@ -279,9 +275,9 @@ export function Landing() {
               </div>
               <h3>Converter é licença, não engenharia</h3>
               <p>
-                As Resoluções BCB 519, 520 e 521, em vigor desde fevereiro de 2026, exigem
-                VASP autorizado ou banco com carteira de câmbio para trocar stablecoin por
-                real. Ninguém constrói essa peça: integra com quem tem a licença.
+                As Resoluções BCB 519, 520 e 521 exigem VASP autorizado para trocar
+                stablecoin por real. Ninguém constrói essa peça — integra com quem tem a
+                licença.
               </p>
             </div>
             <div className="feat">
@@ -291,8 +287,8 @@ export function Landing() {
               <h3>A 561 fechou a porta doméstica</h3>
               <p>
                 Desde outubro de 2026, liquidar pagamento em ativo virtual dentro do país
-                saiu da zona cinzenta para o lado proibido de quem é regulado. Quem montar
-                aceitação de stablecoin para venda doméstica está construindo sobre isso.
+                saiu da zona cinzenta. Quem montar aceitação para venda doméstica está
+                construindo sobre isso.
               </p>
             </div>
             <div className="feat">
@@ -301,18 +297,16 @@ export function Landing() {
               </div>
               <h3>O IOF depende da direção</h3>
               <p>
-                Transferência a terceiros paga 3,5%. Recebimento do exterior paga 0,38%, e
-                exportação de serviços costuma ficar zerada. A mesma tecnologia é cara de um
-                lado e barata do outro — e é o lado barato que ainda não tem ferramenta boa.
+                Transferência a terceiros paga 3,5%. Recebimento do exterior, 0,38% — e
+                exportação de serviços costuma zerar. A mesma tecnologia é cara de um lado
+                e barata do outro.
               </p>
             </div>
           </div>
 
           <p className="why-block">
-            É a razão de o Aros existir apontado para cá: quem fatura de fora tem economia
-            real, caminho legal batido e nenhum produto pensado para ele — hoje usa
-            intermediário genérico feito para outra coisa. Nada disto é orientação
-            jurídica; as alíquotas estão aqui para o seu contador conferir.
+            Quem fatura de fora tem economia real, caminho legal batido e nenhum produto
+            pensado para ele. Nada disto é orientação jurídica.
           </p>
         </div>
       </section>
@@ -321,9 +315,8 @@ export function Landing() {
         <div className="wrap">
           <span className="eyebrow">Integração</span>
           <h2 className="h2">Três linhas, no site que você já tem</h2>
-          <p className="lede" style={{ marginBottom: 28 }}>
-            Não é iframe nem redirecionamento para outra página. O botão é desenhado dentro
-            do seu site, no lugar onde você mandar.
+          <p className="lede" style={{ marginBottom: 26 }}>
+            Não é iframe nem redirecionamento: o botão é desenhado dentro do seu site.
           </p>
 
           <div className="tabs" role="tablist">
@@ -399,13 +392,8 @@ export function Landing() {
         <div className="wrap">
           <span className="eyebrow">Para onde vai</span>
           <h2 className="h2">O botão é a porta de entrada, não o produto final</h2>
-          <p className="lede" style={{ marginBottom: 32 }}>
-            Aceitar é o primeiro passo de uma coisa maior: dar a quem fatura de fora uma
-            alternativa inteira aos intermediários de sempre. Três camadas, na ordem em que
-            estão sendo construídas.
-          </p>
 
-          <div className="grid-3">
+          <div className="grid-3" style={{ marginTop: 26 }}>
             <div className="feat">
               <div className="feat-icon" aria-hidden="true">
                 1️⃣
@@ -423,9 +411,8 @@ export function Landing() {
               </div>
               <h3>Converter — via parceiro</h3>
               <p>
-                Do USDC recebido para reais na conta, sem você abrir corretora. Converter
-                exige autorização do Banco Central, então isso é integração com um VASP
-                licenciado — não algo que o Aros faz sozinho, e não vamos fingir que é.
+                Do USDC para reais na conta, sem abrir corretora. Exige VASP licenciado,
+                então é integração — não algo que o Aros faz sozinho.
               </p>
             </div>
             <div className="feat">
@@ -434,18 +421,12 @@ export function Landing() {
               </div>
               <h3>Administrar — depois</h3>
               <p>
-                Histórico de cobranças, conciliação para a contabilidade, webhook para o seu
-                sistema. A parte que roda em servidor e por isso é a parte paga.
+                Histórico, conciliação, webhook. A parte que roda em servidor e por isso é
+                a parte paga.
               </p>
             </div>
           </div>
 
-          <p className="why-block">
-            Por que nessa ordem: aceitar é o único passo que dá para entregar sem servidor,
-            sem licença e sem pedir confiança a ninguém — então vai na frente e vai de
-            graça. Converter depende de parceria regulada, e parceria só se fecha com fluxo
-            para mostrar. Administrar só faz sentido com volume para administrar.
-          </p>
         </div>
       </section>
 
@@ -453,9 +434,8 @@ export function Landing() {
         <div className="wrap">
           <span className="eyebrow">Sem enfeite</span>
           <h2 className="h2">Onde isso está de verdade</h2>
-          <p className="lede" style={{ marginBottom: 32 }}>
-            A seção acima diz para onde o Aros vai. Esta diz onde ele está hoje, em 31 de
-            agosto de 2026. Não são a mesma coisa, e produto novo raramente admite isso.
+          <p className="lede" style={{ marginBottom: 28 }}>
+            Em 31 de agosto de 2026. Produto novo raramente admite esta parte.
           </p>
 
           <div className="honest">
@@ -464,38 +444,23 @@ export function Landing() {
               <ul className="honest-list">
                 <li>
                   <span className="m ok">✓</span>
-                  <span>
-                    Fluxo de pagamento completo
-                    <small>montar cobrança, abrir carteira, confirmar na chain</small>
-                  </span>
+                  <span>Fluxo de pagamento completo, da cobrança à confirmação on-chain</span>
                 </li>
                 <li>
                   <span className="m ok">✓</span>
-                  <span>
-                    Botão em React e em HTML puro
-                    <small>mesma lógica, duas embalagens</small>
-                  </span>
+                  <span>Botão em React e em HTML puro</span>
                 </li>
                 <li>
                   <span className="m ok">✓</span>
-                  <span>
-                    Recibo que se verifica sozinho
-                    <small>reconfere on-chain a cada abertura</small>
-                  </span>
+                  <span>Recibo que se reconfere on-chain a cada abertura</span>
                 </li>
                 <li>
                   <span className="m ok">✓</span>
-                  <span>
-                    Config que falha no deploy, não na venda
-                    <small>endereço errado quebra antes de ir ao ar</small>
-                  </span>
+                  <span>Cobrança por link, para quem não tem checkout</span>
                 </li>
                 <li>
                   <span className="m ok">✓</span>
-                  <span>
-                    Atribuição ERC-8021
-                    <small>a transação é reconhecida pela Base</small>
-                  </span>
+                  <span>Atribuição ERC-8021 reconhecida pela Base</span>
                 </li>
               </ul>
             </div>
@@ -585,72 +550,42 @@ export function Landing() {
       <section>
         <div className="wrap narrow">
           <span className="eyebrow">Dúvidas</span>
-          <h2 className="h2">As perguntas que aparecem primeiro</h2>
+          <h2 className="h2">As quatro que aparecem primeiro</h2>
 
           <div className="faq" style={{ marginTop: 26 }}>
             <details className="q">
               <summary>Como eu transformo isso em reais na minha conta?</summary>
               <p>
-                Hoje, por sua conta: o USDC chega na carteira que você configurou e a
-                conversão é um passo manual, numa corretora ou serviço de câmbio. Converter
-                stablecoin em real exige autorização do Banco Central, então essa camada só
+                Hoje, por sua conta: o USDC chega na sua carteira e a conversão é um passo
+                manual. Converter exige autorização do Banco Central, então essa camada só
                 existe via parceiro licenciado — e o Aros ainda não fechou nenhum. É a maior
-                pendência do produto, e está dita aqui em vez de omitida porque é a primeira
-                pergunta que qualquer um faz.
+                pendência do produto.
               </p>
             </details>
             <details className="q">
               <summary>Isso é legal? E quanto de imposto eu pago?</summary>
               <p>
-                Receber do exterior e converter por um parceiro autorizado é caminho
-                estabelecido, e o IOF de entrada é de 0,38% — costumando ficar zerado quando
-                a operação é exportação de serviços. Já liquidar venda doméstica em ativo
-                virtual é terreno que a Resolução BCB 561 restringiu a partir de outubro de
-                2026. Nada disso é orientação jurídica: são pontos para você levar ao seu
-                contador antes de cobrar o primeiro cliente.
+                Receber do exterior e converter por parceiro autorizado é caminho
+                estabelecido: IOF de entrada de 0,38%, costumando zerar em exportação de
+                serviços. Nada disso é orientação jurídica — leve ao seu contador antes de
+                cobrar o primeiro cliente.
               </p>
             </details>
             <details className="q">
               <summary>E se eu vender para cliente aqui do Brasil?</summary>
               <p>
-                O botão funciona igual, e o kit é aberto — não impede ninguém. Mas aí a
-                operação é doméstica liquidada em ativo virtual, que é justamente o terreno
-                restringido pela Resolução BCB 561 desde outubro de 2026, e o caminho de
-                volta para reais fica bem menos claro que no recebimento do exterior. Se
-                esse é o seu caso, converse com um contador antes.
-              </p>
-            </details>
-            <details className="q">
-              <summary>Meu cliente precisa entender de cripto?</summary>
-              <p>
-                Ele precisa ter uma carteira e USDC. Para quem já paga fornecedor em
-                stablecoin isso é rotina; para quem nunca usou, é uma barreira real e vale
-                oferecer também um meio tradicional. O Aros não substitui seus outros meios
-                de cobrança — ele adiciona um que não cobra pedágio.
-              </p>
-            </details>
-            <details className="q">
-              <summary>E se o cliente fechar a aba no meio do pagamento?</summary>
-              <p>
-                O pagamento confirma na blockchain de qualquer forma — não depende da aba
-                estar aberta. O que se perde é a tela de confirmação. O link do recibo
-                continua válido e pode ser reaberto a qualquer momento.
+                O botão funciona igual e o kit é aberto. Mas aí a operação é doméstica
+                liquidada em ativo virtual — o terreno que a Resolução BCB 561 restringiu
+                desde outubro de 2026 — e o caminho de volta para reais fica bem menos
+                claro. Converse com um contador antes.
               </p>
             </details>
             <details className="q">
               <summary>Vocês ficam com alguma porcentagem?</summary>
               <p>
-                Não. O pagamento vai direto da carteira do cliente para a sua, sem passar
-                por nós. Não existe servidor do Aros no caminho, então não haveria onde
-                cobrar nem como segurar o dinheiro.
-              </p>
-            </details>
-            <details className="q">
-              <summary>O que acontece se o projeto for abandonado?</summary>
-              <p>
-                Você continua recebendo. O código é MIT e roda inteiro no navegador de quem
-                paga, conversando direto com a rede Base. Não há licença para expirar nem
-                serviço para desligar.
+                Não. O pagamento vai direto da carteira do cliente para a sua. Não existe
+                servidor do Aros no caminho, então não haveria onde cobrar nem como segurar
+                o dinheiro — e se o projeto for abandonado amanhã, você continua recebendo.
               </p>
             </details>
           </div>
@@ -671,16 +606,9 @@ export function Landing() {
                   <span className="body">
                     Confirmação sem varrer a chain
                     <span>
-                      o plano original não fechava — <code>transfer</code> de ERC-20 não
-                      carrega memo. O hash do userOp virou a referência.
+                      <code>transfer</code> de ERC-20 não carrega memo, então o hash do
+                      userOp virou a referência
                     </span>
-                  </span>
-                </li>
-                <li>
-                  <span className="mark ok">✓</span>
-                  <span className="body">
-                    Recibo que não depende de servidor
-                    <span>tela de sucesso é afirmação do navegador; o link reconfere on-chain</span>
                   </span>
                 </li>
                 <li>
@@ -694,7 +622,7 @@ export function Landing() {
                   <span className="mark ok">✓</span>
                   <span className="body">
                     O alvo mudou por leitura de regra
-                    <span>a seção "A tese" acima é o motivo, e ele veio antes do código</span>
+                    <span>e a leitura veio antes do código</span>
                   </span>
                 </li>
               </ul>
@@ -703,9 +631,8 @@ export function Landing() {
             <div className="panel">
               <h3>Como falar comigo</h3>
               <p style={{ color: 'var(--ink-soft)', fontSize: 14.5, marginBottom: 16 }}>
-                Se você fatura de fora e topa testar uma cobrança real, é exatamente com
-                você que eu preciso falar. Também quero ouvir quem acha que isso não
-                resolve nada.
+                Se você fatura de fora e topa testar uma cobrança real, é com você que eu
+                preciso falar. E também com quem acha que isso não resolve nada.
               </p>
               <ul className="items">
                 <li>
