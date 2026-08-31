@@ -141,7 +141,7 @@ export function Landing() {
           <div>
             <span className="pill">
               <span className="dot" aria-hidden="true" />
-              Construindo em público · Base Sepolia
+              Construindo em público · código aberto desde o primeiro commit
             </span>
 
             <h1>
@@ -260,17 +260,60 @@ export function Landing() {
             não nosso: os números estão aqui para você conferir, não para acreditar.
           </p>
 
-          <div className="aside">
-            <h3>E para quem vende aqui dentro?</h3>
-            <p>
-              O botão funciona igual, e alguns lojistas vão querer usá-lo com clientes
-              brasileiros. Só que aí a operação é doméstica liquidada em ativo virtual, e é
-              justamente o terreno que a Resolução BCB 561 fechou para intermediários
-              regulados a partir de outubro de 2026. O kit é aberto e não impede ninguém —
-              mas se o seu caso é esse, converse com um contador antes, porque o caminho de
-              volta para reais é bem menos claro que no recebimento de fora.
-            </p>
+        </div>
+      </section>
+
+      <section id="porque">
+        <div className="wrap">
+          <span className="eyebrow">A tese</span>
+          <h2 className="h2">Por que exportação, e não a loja da esquina</h2>
+          <p className="lede" style={{ marginBottom: 32 }}>
+            O Aros começou apontado para o varejo pequeno. Mudou de alvo por leitura de
+            regra, não por preferência de mercado — e é essa leitura que define o produto.
+          </p>
+
+          <div className="grid-3">
+            <div className="feat">
+              <div className="feat-icon" aria-hidden="true">
+                ⚖️
+              </div>
+              <h3>Converter é licença, não engenharia</h3>
+              <p>
+                As Resoluções BCB 519, 520 e 521, em vigor desde fevereiro de 2026, exigem
+                VASP autorizado ou banco com carteira de câmbio para trocar stablecoin por
+                real. Ninguém constrói essa peça: integra com quem tem a licença.
+              </p>
+            </div>
+            <div className="feat">
+              <div className="feat-icon" aria-hidden="true">
+                🚪
+              </div>
+              <h3>A 561 fechou a porta doméstica</h3>
+              <p>
+                Desde outubro de 2026, liquidar pagamento em ativo virtual dentro do país
+                saiu da zona cinzenta para o lado proibido de quem é regulado. Quem montar
+                aceitação de stablecoin para venda doméstica está construindo sobre isso.
+              </p>
+            </div>
+            <div className="feat">
+              <div className="feat-icon" aria-hidden="true">
+                📐
+              </div>
+              <h3>O IOF depende da direção</h3>
+              <p>
+                Transferência a terceiros paga 3,5%. Recebimento do exterior paga 0,38%, e
+                exportação de serviços costuma ficar zerada. A mesma tecnologia é cara de um
+                lado e barata do outro — e é o lado barato que ainda não tem ferramenta boa.
+              </p>
+            </div>
           </div>
+
+          <p className="why-block">
+            É a razão de o Aros existir apontado para cá: quem fatura de fora tem economia
+            real, caminho legal batido e nenhum produto pensado para ele — hoje usa
+            intermediário genérico feito para outra coisa. Nada disto é orientação
+            jurídica; as alíquotas estão aqui para o seu contador conferir.
+          </p>
         </div>
       </section>
 
@@ -464,35 +507,50 @@ export function Landing() {
                   <span className="m no">✕</span>
                   <span>
                     Nenhum pagamento real foi feito
-                    <small>os testes provam a lógica, não a carteira do mundo real</small>
+                    <small>
+                      os testes provam a lógica, não a carteira do mundo real.
+                      <b> Próximo: primeira transação em mainnet.</b>
+                    </small>
                   </span>
                 </li>
                 <li>
                   <span className="m no">✕</span>
                   <span>
                     Ninguém usa em produção
-                    <small>você seria o primeiro, e isso tem os riscos que tem</small>
+                    <small>
+                      você seria o primeiro, e isso tem os riscos que tem.
+                      <b> Próximo: três cobranças reais com quem já fatura em dólar.</b>
+                    </small>
                   </span>
                 </li>
                 <li>
                   <span className="m no">✕</span>
                   <span>
                     Sem parceiro de conversão fechado
-                    <small>a camada 2 não tem contrato nem integração ainda</small>
+                    <small>
+                      a camada 2 não tem contrato nem integração ainda.
+                      <b> Próximo: conversa com VASP autorizado sob a Resolução 520.</b>
+                    </small>
                   </span>
                 </li>
                 <li>
                   <span className="m no">✕</span>
                   <span>
                     Nada disso é orientação jurídica
-                    <small>as alíquotas citadas precisam do seu contador, não da nossa palavra</small>
+                    <small>
+                      as alíquotas vieram de fonte secundária, não do texto do BCB.
+                      <b> Próximo: validar com advogado antes de cobrar alguém.</b>
+                    </small>
                   </span>
                 </li>
                 <li>
                   <span className="m no">✕</span>
                   <span>
                     Sem painel de cobranças
-                    <small>a confirmação vive na tela e no link do recibo</small>
+                    <small>
+                      a confirmação vive na tela e no link do recibo.
+                      <b> Depois das três acima — não antes.</b>
+                    </small>
                   </span>
                 </li>
               </ul>
@@ -553,6 +611,16 @@ export function Landing() {
               </p>
             </details>
             <details className="q">
+              <summary>E se eu vender para cliente aqui do Brasil?</summary>
+              <p>
+                O botão funciona igual, e o kit é aberto — não impede ninguém. Mas aí a
+                operação é doméstica liquidada em ativo virtual, que é justamente o terreno
+                restringido pela Resolução BCB 561 desde outubro de 2026, e o caminho de
+                volta para reais fica bem menos claro que no recebimento do exterior. Se
+                esse é o seu caso, converse com um contador antes.
+              </p>
+            </details>
+            <details className="q">
               <summary>Meu cliente precisa entender de cripto?</summary>
               <p>
                 Ele precisa ter uma carteira e USDC. Para quem já paga fornecedor em
@@ -589,7 +657,71 @@ export function Landing() {
         </div>
       </section>
 
-      <section className="closing">
+      <section id="quem">
+        <div className="wrap">
+          <span className="eyebrow">Quem está construindo</span>
+          <h2 className="h2">Uma pessoa, em público, com prazo</h2>
+
+          <div className="cols" style={{ marginTop: 22 }}>
+            <div className="panel">
+              <h3>O que já foi decidido aqui</h3>
+              <ul className="items">
+                <li>
+                  <span className="mark ok">✓</span>
+                  <span className="body">
+                    Confirmação sem varrer a chain
+                    <span>
+                      o plano original não fechava — <code>transfer</code> de ERC-20 não
+                      carrega memo. O hash do userOp virou a referência.
+                    </span>
+                  </span>
+                </li>
+                <li>
+                  <span className="mark ok">✓</span>
+                  <span className="body">
+                    Recibo que não depende de servidor
+                    <span>tela de sucesso é afirmação do navegador; o link reconfere on-chain</span>
+                  </span>
+                </li>
+                <li>
+                  <span className="mark ok">✓</span>
+                  <span className="body">
+                    285 KB → 67 KB de primeira carga
+                    <span>o SDK de 1 MB só desce no clique, não em toda visita</span>
+                  </span>
+                </li>
+                <li>
+                  <span className="mark ok">✓</span>
+                  <span className="body">
+                    O alvo mudou por leitura de regra
+                    <span>a seção "A tese" acima é o motivo, e ele veio antes do código</span>
+                  </span>
+                </li>
+              </ul>
+            </div>
+
+            <div className="panel">
+              <h3>Como falar comigo</h3>
+              <p style={{ color: 'var(--ink-soft)', fontSize: 14.5, marginBottom: 16 }}>
+                Se você fatura de fora e topa testar uma cobrança real, é exatamente com
+                você que eu preciso falar. Também quero ouvir quem acha que isso não
+                resolve nada.
+              </p>
+              <ul className="items">
+                <li>
+                  <span className="mark ok">→</span>
+                  <span className="body">
+                    <a href={REPO}>github.com/Bielcx/Aros</a>
+                    <span>issues abertas, e o histórico de decisões nos commits</span>
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
         <div className="wrap">
           <div className="cta">
             <div className="cta-inner">
