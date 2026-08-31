@@ -637,50 +637,76 @@ footer.site .row .sep { margin-left: auto; }
 .aside p { color: var(--ink-soft); font-size: 14px; margin: 0; max-width: 74ch; }
 
 /* ---------- border beam ----------
-   Um ponto de luz correndo pela borda do botao. O truque tem duas partes:
-   um anel que so existe na area da borda (dois masks compostos com
-   "intersect": um recortado no padding-box, outro no border-box, entao so
-   sobra a moldura), e dentro dele um borrao que percorre o retangulo via
-   offset-path. Sem o mask o brilho vazaria por cima do texto.
+   Arco de luz girando na borda do botao, na tecnica do componente da
+   cult-ui (pacote npm "border-beam"), nao na de ponto viajando por
+   offset-path -- que era o que estava aqui antes e nao e o mesmo efeito.
 
-   Fica atras de @supports de proposito: onde offset-path com rect() nao
-   existe, o botao continua um botao normal em vez de aparecer um borrao
-   parado num canto. */
+   Como funciona: um retangulo do tamanho do botao, pintado com o gradiente
+   do brilho, recortado por tres mascaras compostas.
+
+     1. conic-gradient girando  -> define ONDE o brilho aparece: um arco com
+        as pontas suaves, o resto transparente.
+     2. linear no content-box   -> o miolo do botao.
+     3. linear no border-box    -> o retangulo inteiro.
+
+   "intersect, exclude" le assim: (3) menos (2) sobra so a moldura; a
+   moldura interseccionada com (1) sobra so o pedaco de moldura sob o arco.
+   Sem isso o brilho cobriria o botao inteiro.
+
+   O padding e a espessura da moldura. O @property e obrigatorio: sem
+   registrar --beam-angle como <angle>, o navegador trata a variavel como
+   texto e a animacao nao interpola -- o arco fica parado. */
+
+@property --beam-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
 .beam { position: relative; }
 
-@supports (offset-path: rect(0 auto auto 0)) {
-  .beam-ring {
-    border: 1.5px solid transparent;
-    border-radius: inherit;
-    inset: 0;
-    pointer-events: none;
-    position: absolute;
+.beam-ring {
+  --beam-angle: 0deg;
+  animation: beam-spin 3s linear infinite;
+  background: linear-gradient(90deg, #8ec5ff, #ffffff 45%, #d6e9ff);
+  border-radius: inherit;
+  inset: 0;
+  padding: 1.6px;
+  pointer-events: none;
+  position: absolute;
 
-    -webkit-mask: linear-gradient(#fff, #fff), linear-gradient(#fff, #fff);
-    -webkit-mask-clip: padding-box, border-box;
-    -webkit-mask-composite: xor;
-    mask: linear-gradient(#fff, #fff), linear-gradient(#fff, #fff);
-    mask-clip: padding-box, border-box;
-    mask-composite: exclude;
-  }
+  -webkit-mask:
+    conic-gradient(
+      from var(--beam-angle),
+      transparent 0%, transparent 30%,
+      rgba(255, 255, 255, .1) 36%, rgba(255, 255, 255, .35) 44%,
+      #fff 52%, #fff 80%,
+      rgba(255, 255, 255, .35) 86%, rgba(255, 255, 255, .1) 92%,
+      transparent 95%, transparent 100%
+    ),
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: source-in, xor;
+  mask:
+    conic-gradient(
+      from var(--beam-angle),
+      transparent 0%, transparent 30%,
+      rgba(255, 255, 255, .1) 36%, rgba(255, 255, 255, .35) 44%,
+      #fff 52%, #fff 80%,
+      rgba(255, 255, 255, .35) 86%, rgba(255, 255, 255, .1) 92%,
+      transparent 95%, transparent 100%
+    ),
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: intersect, exclude;
+}
 
-  .beam-ring::after {
-    animation: border-beam 4.5s linear infinite;
-    aspect-ratio: 1;
-    background: linear-gradient(to left, #cfe0ff, #ffffff, transparent);
-    content: "";
-    offset-anchor: 90% 50%;
-    offset-path: rect(0 auto auto 0 round 24px);
-    position: absolute;
-    width: 56px;
-  }
+@keyframes beam-spin {
+  to { --beam-angle: 360deg; }
+}
 
-  @keyframes border-beam {
-    to { offset-distance: 100%; }
-  }
-
-  /* Quem pediu menos movimento nao quer um brilho girando sem parar. */
-  @media (prefers-reduced-motion: reduce) {
-    .beam-ring::after { animation: none; opacity: 0; }
-  }
+/* Quem pediu menos movimento nao quer um arco girando sem parar. Fica o
+   contorno claro, parado -- some o giro, nao o desenho. */
+@media (prefers-reduced-motion: reduce) {
+  .beam-ring { animation: none; }
 }
