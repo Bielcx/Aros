@@ -608,3 +608,52 @@ footer.site .row .sep { margin-left: auto; }
 }
 .aside h3 { color: var(--warn); font-size: 14px; font-weight: 600; margin-bottom: 8px; }
 .aside p { color: var(--ink-soft); font-size: 14px; margin: 0; max-width: 74ch; }
+
+/* ---------- border beam ----------
+   Um ponto de luz correndo pela borda do botao. O truque tem duas partes:
+   um anel que so existe na area da borda (dois masks compostos com
+   "intersect": um recortado no padding-box, outro no border-box, entao so
+   sobra a moldura), e dentro dele um borrao que percorre o retangulo via
+   offset-path. Sem o mask o brilho vazaria por cima do texto.
+
+   Fica atras de @supports de proposito: onde offset-path com rect() nao
+   existe, o botao continua um botao normal em vez de aparecer um borrao
+   parado num canto. */
+.beam { position: relative; }
+
+@supports (offset-path: rect(0 auto auto 0)) {
+  .beam-ring {
+    border: 1.5px solid transparent;
+    border-radius: inherit;
+    inset: 0;
+    pointer-events: none;
+    position: absolute;
+
+    -webkit-mask: linear-gradient(#fff, #fff), linear-gradient(#fff, #fff);
+    -webkit-mask-clip: padding-box, border-box;
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#fff, #fff), linear-gradient(#fff, #fff);
+    mask-clip: padding-box, border-box;
+    mask-composite: exclude;
+  }
+
+  .beam-ring::after {
+    animation: border-beam 4.5s linear infinite;
+    aspect-ratio: 1;
+    background: linear-gradient(to left, #cfe0ff, #ffffff, transparent);
+    content: "";
+    offset-anchor: 90% 50%;
+    offset-path: rect(0 auto auto 0 round 24px);
+    position: absolute;
+    width: 56px;
+  }
+
+  @keyframes border-beam {
+    to { offset-distance: 100%; }
+  }
+
+  /* Quem pediu menos movimento nao quer um brilho girando sem parar. */
+  @media (prefers-reduced-motion: reduce) {
+    .beam-ring::after { animation: none; opacity: 0; }
+  }
+}

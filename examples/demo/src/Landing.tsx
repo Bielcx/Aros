@@ -145,8 +145,9 @@ export function Landing() {
             </p>
 
             <div className="hero-cta">
-              <a className="btn btn-primary" href="#conta">
+              <a className="btn btn-primary beam" href="#conta">
                 Ver a conta
+                <span className="beam-ring" aria-hidden="true" />
               </a>
               <a className="btn btn-ghost" href="/loja">
                 Testar sem gastar nada
