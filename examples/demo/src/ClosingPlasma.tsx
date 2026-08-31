@@ -254,9 +254,14 @@ export function ClosingPlasma({
     const canvas = canvasRef.current;
     if (!container || !canvas) return;
 
+    /* Ouve no window, nao no proprio elemento. Como fundo de pagina ele fica
+       atras de tudo e com pointer-events: none, entao nunca receberia evento
+       proprio -- e as coordenadas continuam sendo calculadas em relacao ao
+       retangulo dele, o que funciona igual nos dois usos. */
     const handlePointerMove = (event: PointerEvent) => {
       if (!settings.interactive) return;
       const rect = container.getBoundingClientRect();
+      if (!rect.width || !rect.height) return;
       targetMouseRef.current = {
         x: (event.clientX - rect.left) / rect.width,
         y: 1 - (event.clientY - rect.top) / rect.height,
@@ -266,12 +271,12 @@ export function ClosingPlasma({
       targetMouseRef.current = { x: 0.5, y: 0.5 };
     };
 
-    container.addEventListener('pointermove', handlePointerMove);
-    container.addEventListener('pointerleave', handlePointerLeave);
+    window.addEventListener('pointermove', handlePointerMove, { passive: true });
+    document.addEventListener('pointerleave', handlePointerLeave);
 
     const teardownListeners = () => {
-      container.removeEventListener('pointermove', handlePointerMove);
-      container.removeEventListener('pointerleave', handlePointerLeave);
+      window.removeEventListener('pointermove', handlePointerMove);
+      document.removeEventListener('pointerleave', handlePointerLeave);
     };
 
     const gl = canvas.getContext('webgl', { antialias: false, alpha: true });
@@ -398,16 +403,34 @@ export function ClosingPlasma({
       rafId = requestAnimationFrame(render);
     };
 
-    /* So desenha quando esta na tela. O bloco fica no fim da pagina: sem isso
-       o shader roda o tempo todo enquanto a pessoa le o topo. */
+    const play = () => {
+      if (!rafId) rafId = requestAnimationFrame(render);
+    };
+    const pause = () => {
+      if (rafId) {
+        cancelAnimationFrame(rafId);
+        rafId = 0;
+      }
+    };
+
+    /* Duas razoes para parar de desenhar, e as duas importam mais agora que
+       ele cobre a viewport inteira em vez de um bloco no rodape:
+
+       - fora da tela (so acontece no uso em bloco);
+       - aba em segundo plano. Sem isto o shader continua rodando enquanto a
+         pessoa trabalha em outra aba. O navegador ja estrangula o rAF em
+         aba oculta, mas nao garante parar -- e um fundo de pagina fica vivo
+         a sessao inteira, nao alguns segundos. */
+    const onVisibility = () => {
+      if (document.hidden) pause();
+      else play();
+    };
+    document.addEventListener('visibilitychange', onVisibility);
+
     const visibility = new IntersectionObserver(
       ([entry]) => {
-        if (entry?.isIntersecting) {
-          if (!rafId) rafId = requestAnimationFrame(render);
-        } else if (rafId) {
-          cancelAnimationFrame(rafId);
-          rafId = 0;
-        }
+        if (entry?.isIntersecting && !document.hidden) play();
+        else pause();
       },
       { rootMargin: '120px' },
     );
@@ -415,7 +438,8 @@ export function ClosingPlasma({
 
     return () => {
       teardownListeners();
-      if (rafId) cancelAnimationFrame(rafId);
+      document.removeEventListener('visibilitychange', onVisibility);
+      pause();
       visibility.disconnect();
       resizeObserver.disconnect();
       dispose();

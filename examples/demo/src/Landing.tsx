@@ -108,6 +108,18 @@ export function Landing() {
 
   return (
     <>
+      {/* Fundo da página inteira. Fica fixo atrás de tudo; o scrim escuro que
+          o CSS põe por cima é o que mantém o texto legível. */}
+      <ClosingPlasma
+        className="page-bg"
+        speed={0.45}
+        turbulence={0.8}
+        grain={0.4}
+        sparkle={0.45}
+        vignette={1.1}
+        opacity={1}
+      />
+
       <nav className="nav">
         <div className="wrap nav-in">
           <a className="brand" href="/">
@@ -639,14 +651,7 @@ export function Landing() {
 
       <section className="closing">
         <div className="wrap">
-          <ClosingPlasma
-            className="cta"
-            speed={0.6}
-            turbulence={0.85}
-            grain={0.5}
-            sparkle={0.7}
-            opacity={0.9}
-          >
+          <div className="cta">
             <div className="cta-inner">
               <h2 className="h2" style={{ margin: 0 }}>
                 Teste com dinheiro de mentira agora
@@ -664,7 +669,7 @@ export function Landing() {
                 </a>
               </div>
             </div>
-          </ClosingPlasma>
+          </div>
         </div>
       </section>
 
