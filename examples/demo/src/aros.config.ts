@@ -17,7 +17,8 @@ export const config: AroConfig = {
   supportWhatsapp: '5511999998888',
   // Sempre comece em testnet. Base Sepolia nao usa dinheiro de verdade.
   testnet: true,
-  receiptBaseUrl: 'http://localhost:5173/',
+  // O recibo volta para a loja, seja em localhost ou em producao.
+  receiptBaseUrl: new URL('/loja', window.location.origin).toString(),
   items: [
     { id: 'shape', name: 'Shape 8.0"', price: 34.9, description: 'Maple sete laminas' },
     { id: 'truck', name: 'Par de trucks', price: 42.5 },
