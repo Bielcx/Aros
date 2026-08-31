@@ -120,9 +120,7 @@ section + section { border-top: 1px solid var(--rule); }
 /* ---------- navegacao ---------- */
 
 .nav {
-  backdrop-filter: blur(12px);
-  background: rgba(8, 9, 12, .78);
-  border-bottom: 1px solid var(--rule);
+  background: transparent;
   position: sticky;
   top: 0;
   z-index: 20;
@@ -133,6 +131,27 @@ section + section { border-top: 1px solid var(--rule); }
   gap: 10px;
   height: 62px;
 }
+
+/* Botao do GitHub: pill escuro com a marca e o rotulo, como no print. */
+.gh {
+  align-items: center;
+  background: rgba(255, 255, 255, .05);
+  border: 1px solid rgba(255, 255, 255, .1);
+  border-radius: 999px;
+  color: var(--ink);
+  display: inline-flex;
+  font-size: 13.5px;
+  font-weight: 600;
+  gap: 8px;
+  margin-left: auto;
+  padding: 7px 14px;
+  transition: background .14s, border-color .14s;
+}
+.gh:hover {
+  background: rgba(255, 255, 255, .09);
+  border-color: rgba(255, 255, 255, .18);
+}
+.gh svg { display: block; }
 .brand { align-items: center; display: flex; font-size: 16.5px; font-weight: 700; gap: 9px; letter-spacing: -0.02em; }
 .brand-mark {
   background: var(--blue);
@@ -141,10 +160,7 @@ section + section { border-top: 1px solid var(--rule); }
   height: 22px;
   width: 22px;
 }
-.nav-links { display: flex; gap: 26px; margin-left: auto; }
-.nav-links a { color: var(--ink-soft); font-size: 14.5px; transition: color .12s; }
-.nav-links a:hover { color: var(--ink); }
-@media (max-width: 720px) { .nav-links { display: none; } }
+
 
 /* ---------- hero ---------- */
 
