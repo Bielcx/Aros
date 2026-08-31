@@ -33,7 +33,7 @@ const REPO = 'https://github.com/Bielcx/Aros';
 /** O botao do hero cobra um item so, para nao depender do catalogo. */
 const heroConfig = { ...config, items: undefined, amount: 29 };
 
-type Tab = 'react' | 'bundler' | 'html';
+type Tab = 'react' | 'qualquer';
 
 const SNIPPETS: Record<Tab, { label: string; code: React.ReactNode }> = {
   react: {
@@ -55,28 +55,8 @@ const SNIPPETS: Record<Tab, { label: string; code: React.ReactNode }> = {
       </>
     ),
   },
-  bundler: {
-    label: 'Vue, Svelte, Astro…',
-    code: (
-      <>
-        <span className="tok-key">import</span> {'{ mount }'} <span className="tok-key">from</span>{' '}
-        <span className="tok-str">'aros'</span>;{'\n\n'}
-        <span className="tok-fn">mount</span>
-        {'('}
-        <span className="tok-str">'#checkout'</span>
-        {', {'}
-        {'\n  recipient: '}
-        <span className="tok-str">'0xSuaCarteira'</span>
-        {',\n  storeName: '}
-        <span className="tok-str">'Meu Estúdio'</span>
-        {',\n  amount: '}
-        <span className="tok-str">1200</span>
-        {',\n});'}
-      </>
-    ),
-  },
-  html: {
-    label: 'HTML puro',
+  qualquer: {
+    label: 'Qualquer outro site',
     code: (
       <>
         <span className="tok-com">{'<!-- sem npm, sem build, sem passo de deploy -->'}</span>
@@ -343,6 +323,13 @@ export function Landing() {
           <pre>
             <code>{SNIPPETS[tab].code}</code>
           </pre>
+
+          {tab === 'qualquer' ? (
+            <p className="snippet-note">
+              Tem bundler? <code>npm i aros</code> e importe de <code>'aros'</code> — mesma
+              chamada, sem a URL.
+            </p>
+          ) : null}
 
           <div className="grid-3" style={{ marginTop: 28 }}>
             <div className="feat">

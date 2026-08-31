@@ -655,3 +655,15 @@ footer.site .row .sep { margin-left: auto; }
   pointer-events: none;
   position: absolute;
 }
+
+.snippet-note {
+  color: var(--ink-faint);
+  font-size: 13px;
+  margin: 10px 0 0;
+}
+.snippet-note code {
+  background: var(--surface);
+  border-radius: 4px;
+  font-size: 12px;
+  padding: 1px 5px;
+}
