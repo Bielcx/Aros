@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Aros">
+  <!--
+    Marca do Aros: quadrado azul com um triangulo no canto superior esquerdo,
+    que remete ao apice de um A.
+
+    O triangulo e macico e grande de proposito. Favicon vive a 16px: contorno
+    fino ou vao interno somem, e o que sobra e uma mancha. Massa solida em
+    poucos vertices e o que sobrevive a esse tamanho.
+  -->
+  <rect width="64" height="64" rx="14" fill="#0052FF"/>
+  <path d="M8 38 L23 8 L38 38 Z" fill="#fff"/>
+</svg>
