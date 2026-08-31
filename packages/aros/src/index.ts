@@ -15,6 +15,7 @@ export { createReference } from './reference.js';
 export {
   buildReceipt,
   buildReceiptUrl,
+  addressExplorerUrl,
   explorerUrl,
   parseReceiptUrl,
   userOpExplorerUrl,

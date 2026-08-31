@@ -545,49 +545,49 @@ export function Landing() {
           <span className="eyebrow">Quem está construindo</span>
           <h2 className="h2">Uma pessoa, em público, com prazo</h2>
 
-          <div className="cols" style={{ marginTop: 22 }}>
-            <div className="panel">
+          <div className="honest" style={{ marginTop: 22 }}>
+            <div className="honest-col">
               <h3>O que já foi decidido aqui</h3>
-              <ul className="items">
+              <ul className="honest-list">
                 <li>
-                  <span className="mark ok">✓</span>
-                  <span className="body">
+                  <span className="m ok">✓</span>
+                  <span>
                     Confirmação sem varrer a chain
-                    <span>
+                    <small>
                       <code>transfer</code> de ERC-20 não carrega memo, então o hash do
                       userOp virou a referência
-                    </span>
+                    </small>
                   </span>
                 </li>
                 <li>
-                  <span className="mark ok">✓</span>
-                  <span className="body">
+                  <span className="m ok">✓</span>
+                  <span>
                     285 KB → 67 KB de primeira carga
-                    <span>o SDK de 1 MB só desce no clique, não em toda visita</span>
+                    <small>o SDK de 1 MB só desce no clique, não em toda visita</small>
                   </span>
                 </li>
                 <li>
-                  <span className="mark ok">✓</span>
-                  <span className="body">
+                  <span className="m ok">✓</span>
+                  <span>
                     O alvo mudou por leitura de regra
-                    <span>e a leitura veio antes do código</span>
+                    <small>e a leitura veio antes do código</small>
                   </span>
                 </li>
               </ul>
             </div>
 
-            <div className="panel">
+            <div className="honest-col">
               <h3>Como falar comigo</h3>
-              <p style={{ color: 'var(--ink-soft)', fontSize: 14.5, marginBottom: 16 }}>
+              <p className="contato">
                 Se você fatura de fora e topa testar uma cobrança real, é com você que eu
                 preciso falar. E também com quem acha que isso não resolve nada.
               </p>
-              <ul className="items">
+              <ul className="honest-list">
                 <li>
-                  <span className="mark ok">→</span>
-                  <span className="body">
-                    <a href={REPO}>github.com/Bielcx/Aros</a>
-                    <span>issues abertas, e o histórico de decisões nos commits</span>
+                  <span className="m ok">→</span>
+                  <span>
+                    <a className="contato-link" href={REPO}>github.com/Bielcx/Aros</a>
+                    <small>issues abertas, e o histórico de decisões nos commits</small>
                   </span>
                 </li>
               </ul>

@@ -13,6 +13,24 @@ export function explorerUrl(paymentId: string, testnet = false): string {
   return `${host}/tx/${paymentId}`;
 }
 
+/**
+ * Onde a carteira que recebeu aparece, com as transferencias dela.
+ *
+ * Existe porque o explorerUrl acima e um tiro no escuro: o id que o pay()
+ * devolve e hash de userOp, e o /tx/ do Basescan indexa hash de transacao.
+ * Sao coisas diferentes, e o PaymentStatus do SDK nao expoe o hash da
+ * transacao -- conferido nos tipos: id, sender, amount, recipient, reason,
+ * message, e mais nada.
+ *
+ * Este link resolve sempre, porque endereco o Basescan indexa com certeza.
+ * Serve de rede de seguranca ate um pagamento real dizer qual dos outros
+ * dois funciona.
+ */
+export function addressExplorerUrl(recipient: string, testnet = false): string {
+  const host = testnet ? 'https://sepolia.basescan.org' : 'https://basescan.org';
+  return `${host}/address/${recipient}#tokentxns`;
+}
+
 /** Alternativa: exploradores de userOp indexam ERC-4337 por hash de userOp. */
 export function userOpExplorerUrl(paymentId: string, testnet = false): string {
   const network = testnet ? 'base-sepolia' : 'base';

@@ -19,7 +19,7 @@
  */
 import { formatAmount } from '../amount.js';
 import { defineConfig, validateConfig } from '../config.js';
-import { explorerUrl, parseReceiptUrl, verifyReceipt } from '../receipt.js';
+import { addressExplorerUrl, explorerUrl, parseReceiptUrl, verifyReceipt } from '../receipt.js';
 import { runPayment } from '../runPayment.js';
 import { prefetchBaseSdk } from '../sdk.js';
 import { mount } from './mount.js';
@@ -31,6 +31,7 @@ const Aros = {
   formatAmount,
   parseReceiptUrl,
   verifyReceipt,
+  addressExplorerUrl,
   explorerUrl,
   runPayment,
   prefetchBaseSdk,
@@ -47,6 +48,7 @@ export {
   formatAmount,
   parseReceiptUrl,
   verifyReceipt,
+  addressExplorerUrl,
   explorerUrl,
   runPayment,
   prefetchBaseSdk,
