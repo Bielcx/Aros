@@ -7,12 +7,18 @@ const REPO = 'https://github.com/Bielcx/Aros';
 /**
  * Site do produto.
  *
- * Regra que vale para a pagina inteira: nada aqui e inventado. Sem logo de
- * cliente, sem depoimento, sem numero de volume. O Aros nao tem lojista nem
- * pagamento real ainda, e uma landing que finja o contrario e mentira que
- * qualquer avaliador confere em um clique. No lugar da prova social falsa
- * entram a prova que existe -- codigo aberto, numeros medidos -- e a secao
- * "O que ainda nao esta pronto", que e o diferencial e nao a vergonha.
+ * Duas regras que valem para a pagina inteira.
+ *
+ * 1. Nada aqui e inventado. Sem logo de cliente, sem depoimento, sem numero
+ *    de volume. O Aros nao tem lojista nem pagamento real ainda, e uma landing
+ *    que finja o contrario e mentira que qualquer avaliador confere em um
+ *    clique. No lugar da prova social falsa entram a prova que existe --
+ *    codigo aberto, numeros medidos -- e a secao "Onde isso esta de verdade".
+ *
+ * 2. A tese e dita no presente, o estagio e dito sem enfeite. "Estamos
+ *    construindo a camada de aceitacao" e uma afirmacao honesta sobre para
+ *    onde isso vai; "lojas usam o Aros" seria mentira. A pagina separa as
+ *    duas coisas de proposito, porque e essa separacao que a torna crivel.
  */
 
 /** O botao do hero cobra um item so, para nao depender do catalogo. */
@@ -102,10 +108,10 @@ export function Landing() {
             Aros
           </a>
           <div className="nav-links">
+            <a href="#conta">A conta</a>
             <a href="#integrar">Integração</a>
-            <a href="#porque">Por que</a>
-            <a href="#estado">Estado</a>
-            <a href="#precos">Preços</a>
+            <a href="#tese">Para onde vai</a>
+            <a href="#estado">Onde está</a>
             <a href={REPO}>GitHub</a>
           </div>
         </div>
@@ -116,33 +122,33 @@ export function Landing() {
           <div>
             <span className="pill">
               <span className="dot" aria-hidden="true" />
-              Rodando em Base Sepolia
+              Construindo em público · Base Sepolia
             </span>
 
             <h1>
-              Aceite dólar na sua loja.
+              Receba à vista.
               <br />
-              <em>Sem maquininha, sem prazo.</em>
+              <em>Sem maquininha, sem 30 dias.</em>
             </h1>
 
             <p className="lede">
-              Um botão de checkout em USDC na rede Base. O dinheiro cai direto na sua
-              carteira, em segundos, por centavos de taxa. Não tem servidor para cair
-              nem banco de dados para manter — depois de instalado, o kit não pede nada
-              de você.
+              O varejo pequeno entrega 3% a 5% de cada venda no crédito e espera um mês
+              pelo dinheiro. O Aros é a camada de aceitação que tira as duas coisas do
+              caminho: o cliente paga em dólar digital na rede Base e o valor chega na sua
+              carteira em segundos, por centavos de taxa.
             </p>
 
             <div className="hero-cta">
-              <a className="btn btn-primary" href="#integrar">
-                Ver como integrar
+              <a className="btn btn-primary" href="#conta">
+                Ver a conta
               </a>
               <a className="btn btn-ghost" href="/loja">
-                Abrir a loja de demonstração
+                Testar sem gastar nada
               </a>
             </div>
 
             <p className="hero-fine">
-              Código aberto, MIT. Três linhas em qualquer site, sem build.
+              Código aberto, MIT. Nenhum servidor nosso no caminho do seu dinheiro.
             </p>
           </div>
 
@@ -174,13 +180,73 @@ export function Landing() {
         </div>
       </header>
 
+      <section id="conta">
+        <div className="wrap">
+          <span className="eyebrow">A conta</span>
+          <h2 className="h2">Isso não é sobre cripto. É sobre quanto sobra.</h2>
+          <p className="lede" style={{ marginBottom: 32 }}>
+            Nenhum lojista acorda querendo usar blockchain. Ele acorda querendo o dinheiro
+            da venda de ontem.
+          </p>
+
+          <div className="versus">
+            <div className="vs-card bad">
+              <h3>Maquininha, crédito</h3>
+              <div className="vs-row">
+                <span>Taxa por venda</span>
+                <b>3% a 5%</b>
+              </div>
+              <div className="vs-row">
+                <span>Dinheiro na conta</span>
+                <b>até 30 dias</b>
+              </div>
+              <div className="vs-row">
+                <span>Receber antes</span>
+                <b>custa mais</b>
+              </div>
+              <div className="vs-row">
+                <span>Chargeback</span>
+                <b>risco seu</b>
+              </div>
+            </div>
+
+            <div className="vs-card good">
+              <h3>Aros · USDC na Base</h3>
+              <div className="vs-row">
+                <span>Taxa por venda</span>
+                <b>centavos de rede</b>
+              </div>
+              <div className="vs-row">
+                <span>Dinheiro na conta</span>
+                <b>segundos</b>
+              </div>
+              <div className="vs-row">
+                <span>Receber antes</span>
+                <b>não existe fila</b>
+              </div>
+              <div className="vs-row">
+                <span>Chargeback</span>
+                <b>não há estorno</b>
+              </div>
+            </div>
+          </div>
+
+          <p className="lede" style={{ marginTop: 24, fontSize: 14.5 }}>
+            A contrapartida, dita sem rodeio: sem estorno significa que o comprador também
+            não tem para onde recorrer, e o valor chega em dólar digital — converter para
+            reais é hoje um passo por sua conta. É a peça que falta, e ela está descrita
+            logo abaixo em vez de escondida.
+          </p>
+        </div>
+      </section>
+
       <section id="integrar">
         <div className="wrap">
           <span className="eyebrow">Integração</span>
           <h2 className="h2">Três linhas, no site que você já tem</h2>
           <p className="lede" style={{ marginBottom: 28 }}>
-            Não é iframe nem redirecionamento para outra página. O botão é desenhado
-            dentro da sua loja, no lugar onde você mandar.
+            Não é iframe nem redirecionamento para outra página. O botão é desenhado dentro
+            da sua loja, no lugar onde você mandar.
           </p>
 
           <div className="tabs" role="tablist">
@@ -210,8 +276,8 @@ export function Landing() {
               <h3>O peso só chega no clique</h3>
               <p>
                 A loja carrega 4,7 KB em HTML puro, ou 67 KB num app React. O SDK da
-                carteira, que pesa cerca de 1 MB, só é baixado quando o cliente encosta
-                no botão.
+                carteira, que pesa cerca de 1 MB, só é baixado quando o cliente encosta no
+                botão.
               </p>
             </div>
             <div className="feat">
@@ -220,8 +286,8 @@ export function Landing() {
               </div>
               <h3>O comprovante é um link</h3>
               <p>
-                Sem banco de dados, o recibo carrega os dados na própria URL e reconfere
-                na blockchain toda vez que é aberto. Some se a aba fechar? Não.
+                Sem banco de dados, o recibo carrega os dados na própria URL e reconfere na
+                blockchain toda vez que é aberto. Não depende da aba ficar aberta.
               </p>
             </div>
             <div className="feat">
@@ -238,71 +304,66 @@ export function Landing() {
         </div>
       </section>
 
-      <section id="porque">
+      <section id="tese">
         <div className="wrap">
-          <span className="eyebrow">Por que</span>
-          <h2 className="h2">A conta que o lojista já conhece</h2>
+          <span className="eyebrow">Para onde vai</span>
+          <h2 className="h2">O botão é a porta de entrada, não o produto final</h2>
           <p className="lede" style={{ marginBottom: 32 }}>
-            Isso não é sobre gostar de cripto. É sobre quanto sobra e quando chega.
+            Aceitar pagamento é o primeiro passo de uma coisa maior: dar ao varejo pequeno
+            uma alternativa inteira à adquirência tradicional, montada em cima de stablecoin.
+            Estas são as três camadas, na ordem em que estão sendo construídas.
           </p>
 
-          <div className="versus">
-            <div className="vs-card bad">
-              <h3>Maquininha</h3>
-              <div className="vs-row">
-                <span>Taxa por venda</span>
-                <b>3% a 5%</b>
+          <div className="grid-3">
+            <div className="feat">
+              <div className="feat-icon" aria-hidden="true">
+                1️⃣
               </div>
-              <div className="vs-row">
-                <span>Dinheiro na conta</span>
-                <b>até 30 dias</b>
-              </div>
-              <div className="vs-row">
-                <span>Antecipar recebível</span>
-                <b>custa mais</b>
-              </div>
-              <div className="vs-row">
-                <span>Chargeback</span>
-                <b>risco seu</b>
-              </div>
+              <h3>Aceitar — existe hoje</h3>
+              <p>
+                O botão, a confirmação on-chain e o recibo verificável. Aberto e gratuito
+                para sempre: é a distribuição, não a receita.
+              </p>
             </div>
-
-            <div className="vs-card good">
-              <h3>Aros · USDC na Base</h3>
-              <div className="vs-row">
-                <span>Taxa por venda</span>
-                <b>centavos de rede</b>
+            <div className="feat">
+              <div className="feat-icon" aria-hidden="true">
+                2️⃣
               </div>
-              <div className="vs-row">
-                <span>Dinheiro na conta</span>
-                <b>segundos</b>
+              <h3>Converter — a próxima peça</h3>
+              <p>
+                Do USDC recebido para reais na conta do lojista, sem ele precisar entender
+                carteira, corretora ou câmbio. É o que separa um kit de uma adquirente.
+              </p>
+            </div>
+            <div className="feat">
+              <div className="feat-icon" aria-hidden="true">
+                3️⃣
               </div>
-              <div className="vs-row">
-                <span>Antecipar recebível</span>
-                <b>não existe fila</b>
-              </div>
-              <div className="vs-row">
-                <span>Chargeback</span>
-                <b>não há estorno</b>
-              </div>
+              <h3>Administrar — depois</h3>
+              <p>
+                Histórico de pedidos, conciliação para a contabilidade, webhook para o
+                sistema da loja. A parte que roda em servidor e por isso é a parte paga.
+              </p>
             </div>
           </div>
 
-          <p className="lede" style={{ marginTop: 24, fontSize: 14.5 }}>
-            A contrapartida honesta: sem estorno significa que o comprador também não tem
-            para onde recorrer, e o valor chega em dólar digital — converter para reais é
-            um passo que hoje é por sua conta. Está na lista abaixo, e não escondido.
+          <p className="why-block">
+            Por que nessa ordem: aceitar é o único passo que dá para entregar sem servidor,
+            sem licença e sem pedir confiança a ninguém — então ele vai na frente e vai de
+            graça. Converter só faz sentido com lojista de verdade recebendo. Administrar só
+            faz sentido com volume para administrar.
           </p>
         </div>
       </section>
 
       <section id="estado">
         <div className="wrap">
-          <span className="eyebrow">Estado real</span>
-          <h2 className="h2">O que está pronto e o que não está</h2>
+          <span className="eyebrow">Sem enfeite</span>
+          <h2 className="h2">Onde isso está de verdade</h2>
           <p className="lede" style={{ marginBottom: 32 }}>
-            Nenhum produto novo é honesto sobre isso. Este é, porque a coluna da direita
-            é a parte que decide se o Aros serve para você hoje.
+            A seção acima descreve para onde o Aros vai. Esta descreve onde ele está hoje,
+            em 31 de agosto de 2026. As duas coisas não são a mesma, e nenhum produto novo
+            costuma admitir isso.
           </p>
 
           <div className="honest">
@@ -368,7 +429,7 @@ export function Landing() {
                   <span className="m no">✕</span>
                   <span>
                     Não converte USDC em reais
-                    <small>o valor chega em dólar digital na sua carteira</small>
+                    <small>a camada 2 acima ainda não existe — é a maior pendência</small>
                   </span>
                 </li>
                 <li>
@@ -417,17 +478,17 @@ export function Landing() {
       <section id="precos">
         <div className="wrap">
           <span className="eyebrow">Preços</span>
-          <h2 className="h2">O kit é grátis. Sempre.</h2>
+          <h2 className="h2">A camada de aceitação é grátis. Sempre.</h2>
           <p className="lede" style={{ marginBottom: 32 }}>
-            Ele roda no navegador do seu cliente e o código é aberto — cobrar por ele
-            seria fingir um cadeado que não existe. O que dá para vender é o que precisa
-            de servidor, e isso ainda está sendo construído.
+            Ela roda no navegador do seu cliente e o código é aberto — cobrar por ela seria
+            fingir um cadeado que não existe. O que se cobra é o que precisa de servidor, e
+            isso ainda está sendo construído.
           </p>
 
           <div className="plans">
             <div className="plan lead">
               <span className="plan-badge">Disponível</span>
-              <h3>Kit</h3>
+              <h3>Aceitar</h3>
               <div className="price">
                 R$ 0<small> /para sempre</small>
               </div>
@@ -456,14 +517,18 @@ export function Landing() {
 
             <div className="plan">
               <span className="plan-badge">Em construção</span>
-              <h3>Painel</h3>
+              <h3>Converter e administrar</h3>
               <div className="price">
                 — <small>preço a definir</small>
               </div>
               <p className="desc">
-                O que um kit sem servidor não consegue entregar. Nada disso existe hoje.
+                As camadas 2 e 3. Nada disso existe hoje — está aqui para você saber para
+                onde vai, não para comprar.
               </p>
               <ul>
+                <li>
+                  <span className="m">·</span> Conversão de USDC para reais
+                </li>
                 <li>
                   <span className="m">·</span> Painel com histórico de pedidos
                 </li>
@@ -475,9 +540,6 @@ export function Landing() {
                 </li>
                 <li>
                   <span className="m">·</span> Conciliação para a contabilidade
-                </li>
-                <li>
-                  <span className="m">·</span> Conversão para reais
                 </li>
               </ul>
               <span className="btn btn-ghost" aria-disabled="true">
@@ -495,12 +557,21 @@ export function Landing() {
 
           <div className="faq" style={{ marginTop: 26 }}>
             <details className="q">
+              <summary>Como eu transformo isso em reais na minha conta?</summary>
+              <p>
+                Hoje, por sua conta: o USDC chega na carteira que você configurou e a
+                conversão é um passo manual, numa corretora ou serviço de câmbio. Essa é a
+                camada 2 do produto e a maior pendência que existe. Está sendo dito aqui em
+                vez de omitido porque é a primeira pergunta que qualquer lojista faz — e
+                merece resposta honesta antes de você instalar qualquer coisa.
+              </p>
+            </details>
+            <details className="q">
               <summary>Preciso entender de cripto para usar?</summary>
               <p>
-                Para instalar, não: você troca um endereço de carteira e o nome da loja
-                num arquivo de configuração. Para usar o dinheiro depois, sim — hoje ele
-                chega em USDC e converter para reais é um passo por sua conta. É a maior
-                pendência do produto e está na lista acima.
+                Para instalar, não: você troca um endereço de carteira e o nome da loja num
+                arquivo de configuração. Para usar o dinheiro depois, hoje ainda sim — pela
+                pergunta acima.
               </p>
             </details>
             <details className="q">
@@ -530,9 +601,9 @@ export function Landing() {
             <details className="q">
               <summary>Funciona no Shopify, Wix ou WordPress?</summary>
               <p>
-                Onde der para colar HTML com um bloco de script, funciona — é o caso de
-                todos os três. Não existe plugin oficial de nenhuma dessas plataformas
-                ainda, então hoje é colar o código na mão.
+                Onde der para colar HTML com um bloco de script, funciona — é o caso dos
+                três. Não existe plugin oficial de nenhuma dessas plataformas ainda, então
+                hoje é colar o código na mão.
               </p>
             </details>
           </div>
@@ -567,7 +638,7 @@ export function Landing() {
             <span className="brand-mark" aria-hidden="true" />
             Aros
           </span>
-          <span>Checkout em USDC na rede Base</span>
+          <span>Aceitação de stablecoin para o varejo pequeno</span>
           <span className="sep">
             <a href={REPO}>GitHub</a>
           </span>
